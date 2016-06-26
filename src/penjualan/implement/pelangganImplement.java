@@ -5,8 +5,7 @@
  */
 package penjualan.implement;
 
-import penjualan.entity.Pelanggan;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,11 +19,12 @@ import penjualan.interfc.pelangganInterfc;
  *
  * @author Lani
  */
+@Deprecated
 public class pelangganImplement implements pelangganInterfc {
 //---untuk select atau view datapelanggan dari DB ke form----//  
 
     public List<Pelanggan> getAll() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from pelanggan");
         List<Pelanggan> list = new ArrayList<Pelanggan>();
         while (rs.next()) {
@@ -41,7 +41,7 @@ public class pelangganImplement implements pelangganInterfc {
 
     //---untuk insert ke database---//
     public Pelanggan insert(Pelanggan o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("insert into pelanggan values (?,?,?,?,?)");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("insert into pelanggan values (?,?,?,?,?)");
         st.setString(1, o.getid_pelanggan());
         st.setString(2, o.getNama());
         st.setString(3, o.getjp());
@@ -53,7 +53,7 @@ public class pelangganImplement implements pelangganInterfc {
 //--untuk update ke database--//
 
     public void update(Pelanggan o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("update pelanggan set"
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("update pelanggan set"
                 + " nama=?,jp=?,alamat=?,notlp=? where id_pelanggan=?");
         st.setString(1, o.getNama());
         st.setString(2, o.getjp());
@@ -65,7 +65,7 @@ public class pelangganImplement implements pelangganInterfc {
 //--untuk delete data berdasarkan kode_barang--//
 
     public void delete(String idPelanggan) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("delete from pelanggan where id_pelanggan=?");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("delete from pelanggan where id_pelanggan=?");
         st.setString(1, idPelanggan);
         st.executeUpdate();
     }

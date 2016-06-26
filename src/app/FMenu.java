@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package app;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
 import penjualan.view.barangReport;
 import penjualan.view.barangView;
 import penjualan.view.laporanBeli;
@@ -40,7 +40,7 @@ public class FMenu extends javax.swing.JFrame {
     //-------privilege login-------//
 
     public void setUser() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select nama, jabatan from user where status='ON'");
         if (rs.next()) {
             user.setText(rs.getString("jabatan") + " : " + rs.getString("nama"));

@@ -1,20 +1,17 @@
 package penjualan.implement;
 
-import penjualan.koneksi.koneksi;
-import java.sql.PreparedStatement;
+import penjualan.koneksi.Koneksi;
 import java.sql.SQLException;
-//import penjualan.entity.Transaksi;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import penjualan.view.transaksiView;
-//import penjualan.interfc.TransaksiInterfc;
 
+@Deprecated
 public class TransaksiImplement {
 
     public int UrutanDb() throws SQLException {
 
-        Statement St = koneksi.getConnection().createStatement();
+        Statement St = Koneksi.getConnection().createStatement();
 
         int Jml = 0;
 
@@ -47,7 +44,7 @@ public class TransaksiImplement {
 
         try {
 
-            Statement Kt = koneksi.getConnection().createStatement();
+            Statement Kt = Koneksi.getConnection().createStatement();
 
             ResultSet RsKb = Kt.executeQuery("SELECT Id_Pelanggan, Nama FROM Pelanggan");
 
@@ -73,7 +70,7 @@ public class TransaksiImplement {
 
         try {
 
-            Statement Kt = koneksi.getConnection().createStatement();
+            Statement Kt = Koneksi.getConnection().createStatement();
 
             ResultSet RsKb = Kt.executeQuery("SELECT Kode_Barang, Nama_Barang FROM Barang");
 

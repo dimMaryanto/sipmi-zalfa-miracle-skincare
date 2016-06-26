@@ -9,6 +9,7 @@ package penjualan.entity;
  *
  * @author Lani
  */
+@Deprecated
 public class Pelanggan {
 
     private String id_pelanggan;

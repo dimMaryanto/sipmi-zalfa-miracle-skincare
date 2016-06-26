@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import penjualan.koneksi.koneksi;
-import main.FMenu;
+import penjualan.koneksi.Koneksi;
+import app.FMenu;
 import penjualan.entity.User;
 
 /**
@@ -30,7 +30,7 @@ public class login extends javax.swing.JFrame {
 
     public void masuk() {
         try {
-            PreparedStatement st = koneksi.getConnection().prepareStatement("update user set status = 'OFF'");
+            PreparedStatement st = Koneksi.getConnection().prepareStatement("update user set status = 'OFF'");
             st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,9 +42,9 @@ public class login extends javax.swing.JFrame {
         String user = tusername.getText();
         String pass = tpass.getText();
         try {
-            PreparedStatement ps = koneksi.getConnection().prepareStatement("update user set status = 'ON' where nama='" + user + "' and password='" + pass + "'");
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement("update user set status = 'ON' where nama='" + user + "' and password='" + pass + "'");
             ps.executeUpdate();
-            Statement st = koneksi.getConnection().createStatement();
+            Statement st = Koneksi.getConnection().createStatement();
             ResultSet rs = st.executeQuery("select * from user where nama='" + user + "' AND password='" + pass + "'");
             if (rs.next()) {
                 FMenu mp = new FMenu();

@@ -6,7 +6,7 @@
 package penjualan.implement;
 
 import penjualan.entity.Barang;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,10 +19,11 @@ import penjualan.interfc.barangInterfc;
  *
  * @author Lani
  */
+@Deprecated
 public class barangImplement implements barangInterfc {
 
     public int urutanDb() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         int jml = 0;
         try {
             ResultSet rs = st.executeQuery("select count(*) as urutan from barang");
@@ -40,7 +41,7 @@ public class barangImplement implements barangInterfc {
     //--untuk select atau view databarang dari DB ke Form----//
     @Override
     public List<Barang> getAll() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from barang");
         List<Barang> list = new ArrayList<Barang>();
         while (rs.next()) {
@@ -59,7 +60,7 @@ public class barangImplement implements barangInterfc {
 //---untuk insert ke database---//
     @Override
     public Barang insert(Barang o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("insert into barang values (?,?,?,?,?)");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("insert into barang values (?,?,?,?,?)");
         st.setString(1, o.getKodeBarang());
         st.setString(2, o.getKodeKategori());
         st.setString(3, o.getNamaBarang());
@@ -72,7 +73,7 @@ public class barangImplement implements barangInterfc {
 
     @Override
     public void update(Barang o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("update barang set"
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("update barang set"
                 + "id_kategori=?, nama_barang=?, hargaBeli=?, hargaJual=?, jumlah=? where kode_barang=?");
         st.setString(1, o.getKodeKategori());
         st.setString(2, o.getNamaBarang());
@@ -85,7 +86,7 @@ public class barangImplement implements barangInterfc {
 
     @Override
     public void delete(String kode_barang) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("delete from barang where kode_barang=?");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("delete from barang where kode_barang=?");
         st.setString(1, kode_barang);
         st.executeUpdate();
     }

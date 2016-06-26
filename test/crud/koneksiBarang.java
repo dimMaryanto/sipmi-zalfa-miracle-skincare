@@ -12,14 +12,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import penjualan.koneksi.koneksi;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
+import penjualan.koneksi.Koneksi;
 
 public class koneksiBarang {
 
     public static void main(String[] args) {
         try {
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             Statement s = (Statement) c.createStatement();
             String sql = "Select * From barang";
             ResultSet r = s.executeQuery(sql);

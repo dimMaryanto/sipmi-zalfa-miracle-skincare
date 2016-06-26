@@ -4,6 +4,7 @@ package penjualan.entity;
  *
  * @author
  */
+@Deprecated
 public class User {
 
     private String id;

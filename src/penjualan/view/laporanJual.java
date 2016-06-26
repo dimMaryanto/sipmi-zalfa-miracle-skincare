@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JRException;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
 
 /**
  *
@@ -132,7 +132,7 @@ public class laporanJual extends javax.swing.JFrame {
         param.put("TglAwal", new SimpleDateFormat("yyyy-MM-dd").format(dAwal.getDate()));
         param.put("TglAkhir", new SimpleDateFormat("yyyy-MM-dd").format(dAkhir.getDate()));
         try {
-            Connection conn = koneksi.getConnection();
+            Connection conn = Koneksi.getConnection();
             reportSource = System.getProperty("user.dir") + "/laporan/penjualanReport.jrxml";
             JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn);

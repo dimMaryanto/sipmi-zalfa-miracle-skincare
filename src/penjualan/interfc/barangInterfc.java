@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @author Lani
  */
+@Deprecated
 public interface barangInterfc {
 
     List getAll() throws SQLException;

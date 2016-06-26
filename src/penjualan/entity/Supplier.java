@@ -4,6 +4,7 @@ package penjualan.entity;
  *
  * @author Lani
  */
+@Deprecated
 public class Supplier {
 
     private String kode_supplier;

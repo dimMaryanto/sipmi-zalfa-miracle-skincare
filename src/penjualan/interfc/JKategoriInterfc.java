@@ -8,6 +8,7 @@ import java.util.List;
  *
  * @author Lani
  */
+@Deprecated
 public interface JKategoriInterfc {
 
     List getAll() throws SQLException;

@@ -20,7 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Barang;
 import penjualan.implement.barangImplement;
 import penjualan.interfc.barangInterfc;
-import penjualan.koneksi.koneksi;
+import penjualan.koneksi.Koneksi;
 
 /**
  *
@@ -28,7 +28,7 @@ import penjualan.koneksi.koneksi;
  */
 public class barangReport extends javax.swing.JFrame {
 
-    List<Barang> record = new ArrayList<Barang>();
+    List<Barang> record = new ArrayList<>();
     barangInterfc brgRepServis;
     int row;
 
@@ -36,6 +36,7 @@ public class barangReport extends javax.swing.JFrame {
         initComponents();
         brgRepServis = new barangImplement();
         tbrgRep.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 row = tbrgRep.getSelectedRow();
                 if (row != -1) {
@@ -165,7 +166,7 @@ public class barangReport extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/Laporan_Barang.jasper"), null, c);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
@@ -203,6 +204,7 @@ public class barangReport extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new barangReport().setVisible(true);
             }
