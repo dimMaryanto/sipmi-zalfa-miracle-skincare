@@ -66,9 +66,9 @@ public class barangReport extends javax.swing.JFrame {
         Object data[][] = new Object[record.size()][4];
         int x = 0;
         for (barang brg : record) {
-            data[x][0] = brg.getkodeBarang();
+            data[x][0] = brg.getKodeBarang();
             data[x][1] = brg.getNamaBarang();
-            data[x][2] = brg.getharga();
+            data[x][2] = brg.getHarga();
             x++;
         }
         String judul[] = {"kode_barang", "nama_barang", "harga"};

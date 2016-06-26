@@ -38,17 +38,18 @@ public class barangImplement implements barangInterfc {
     }
 
     //--untuk select atau view databarang dari DB ke Form----//
+    @Override
     public List<barang> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from barang");
         List<barang> list = new ArrayList<barang>();
         while (rs.next()) {
             barang brg = new barang();
-            brg.setkodeBarang(rs.getString("kode_barang"));
-            brg.setid_kategori(rs.getString("id_kategori"));
+            brg.setKodeBarang(rs.getString("kode_barang"));
+            brg.setKodeKategori(rs.getString("id_kategori"));
             brg.setNamaBarang(rs.getString("nama_barang"));
-            brg.setharga(rs.getString("harga"));
-            brg.setjumlah(rs.getString("jumlah"));
+            brg.setHarga(rs.getInt("harga"));
+            brg.setJumlah(rs.getInt("jumlah"));
             list.add(brg);
         }
         return list;
@@ -56,30 +57,33 @@ public class barangImplement implements barangInterfc {
     }
 
 //---untuk insert ke database---//
+    @Override
     public barang insert(barang o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into barang values (?,?,?,?,?)");
-        st.setString(1, o.getkodeBarang());
-        st.setString(2, o.getid_kategori());
+        st.setString(1, o.getKodeBarang());
+        st.setString(2, o.getKodeKategori());
         st.setString(3, o.getNamaBarang());
-        st.setString(4, o.getharga());
-        st.setString(5, o.getjumlah());
+        st.setDouble(4, o.getHarga());
+        st.setInt(5, o.getJumlah());
         st.executeUpdate();
         return o;
     }
 //--untuk update ke database--//
 
+    @Override
     public void update(barang o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update barang set"
                 + "id_kategori=?, nama_barang=?, hargaBeli=?, hargaJual=?, jumlah=? where kode_barang=?");
-        st.setString(1, o.getkodeBarang());
-        st.setString(2, o.getid_kategori());
+        st.setString(1, o.getKodeKategori());
+        st.setString(2, o.getNamaBarang());
         st.setString(3, o.getNamaBarang());
-        st.setString(4, o.getharga());
-        st.setString(5, o.getjumlah());
+        st.setDouble(4, o.getHarga());
+        st.setInt(5, o.getJumlah());
         st.executeUpdate();
     }
 //--untuk delete data berdasarkan kode_barang--//
 
+    @Override
     public void delete(String kode_barang) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("delete from barang where kode_barang=?");
         st.setString(1, kode_barang);

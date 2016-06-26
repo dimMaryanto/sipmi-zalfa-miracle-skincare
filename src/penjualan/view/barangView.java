@@ -93,11 +93,11 @@ public class barangView extends javax.swing.JFrame {
         Object data[][] = new Object[rekord.size()][6];
         int x = 0;
         for (barang brg : rekord) {
-            data[x][0] = brg.getkodeBarang();
-            data[x][1] = brg.getid_kategori();
+            data[x][0] = brg.getKodeBarang();
+            data[x][1] = brg.getKodeKategori();
             data[x][2] = brg.getNamaBarang();
-            data[x][3] = brg.getharga();
-            data[x][4] = brg.getjumlah();
+            data[x][3] = brg.getHarga();
+            data[x][4] = brg.getJumlah();
             x++;
         }
         String judul[] = {"Kode Barang", "Id Kategori", "Nama Barang", "Harga", "Jumlah"};
@@ -124,11 +124,11 @@ public class barangView extends javax.swing.JFrame {
 
     void isiTextKanan() {
         barang brg = rekord.get(row2);
-        txtKodeBarang.setText(brg.getkodeBarang());
+        txtKodeBarang.setText(brg.getKodeBarang());
         txtNamaBarang.setText(brg.getNamaBarang());
-        txtHarga.setText(brg.getharga());
-        txtJumlah.setText(brg.getjumlah());
-        String kode_barang = (String) brg.getkodeBarang();
+        txtHarga.setText(String.valueOf(brg.getHarga()));
+        txtJumlah.setText(String.valueOf(brg.getJumlah()));
+        String kode_barang = (String) brg.getKodeBarang();
         String kode_barangFix = kode_barang.substring(0, 1);
         try {
             Statement ktB = koneksi.getConnection().createStatement();      //cek koneksi ke database dulu
