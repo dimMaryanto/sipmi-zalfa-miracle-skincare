@@ -130,9 +130,7 @@ public class laporanBeli extends javax.swing.JFrame {
         param.put("TglAkhir", new SimpleDateFormat("yyyy-MM-dd").format(dAkhir.getDate()));
         try {
             Connection conn = Koneksi.getConnection();
-            reportSource = System.getProperty("user.dir") + "/laporan/pembelianReport.jrxml";
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/pembelianReport.jasper"), param, conn);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);

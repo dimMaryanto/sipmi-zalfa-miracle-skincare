@@ -10,7 +10,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.engine.JRException;
 import app.configs.Koneksi;
 
 /**
@@ -133,9 +132,7 @@ public class laporanJual extends javax.swing.JFrame {
         param.put("TglAkhir", new SimpleDateFormat("yyyy-MM-dd").format(dAkhir.getDate()));
         try {
             Connection conn = Koneksi.getConnection();
-            reportSource = System.getProperty("user.dir") + "/laporan/penjualanReport.jrxml";
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/penjualanReport.jasper"), param, conn);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);

@@ -169,21 +169,13 @@ public class pelangganReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String reportSource = null;
-        String reportDest = null;
         try {
             Connection c = Koneksi.getConnection();
-            reportSource = System.getProperty("user.dir") + "/laporan/Laporan_Pelanggan.jrxml";
-            reportDest = System.getProperty("user.dir") + "/laporan/Laporan_pelanggan.jasper";
-
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, c);
-
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/Laporan_Pelanggan.jasper"), null, c);
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            System.out.println("e");
+            e.printStackTrace();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
