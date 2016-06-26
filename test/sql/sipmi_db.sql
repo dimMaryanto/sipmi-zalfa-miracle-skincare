@@ -127,6 +127,10 @@ FOREIGN KEY (kode_barang)
 REFERENCES m_barang (kode)
 ON UPDATE CASCADE ON DELETE CASCADE;
 
+INSERT INTO t_pemesanan_pembelian_detail (kode_pemesanan, kode_barang, jumlah) VALUES
+('PO-20160601-2', 'PW01', 50),
+('PO-20160601-2', 'PB01', 10);
+
 # TABEL PEMBELIAN
 
 CREATE TABLE IF NOT EXISTS t_pembelian(

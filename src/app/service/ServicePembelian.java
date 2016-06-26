@@ -147,6 +147,10 @@ public class ServicePembelian implements RepositoryPembelian {
 
             daftarDetailPembelian.add(bd);
         }
+
+        rs.close();
+        ps.close();
+        connect.close();
         return daftarDetailPembelian;
     }
 
@@ -183,6 +187,7 @@ public class ServicePembelian implements RepositoryPembelian {
             ps.setInt(4, d.getJumlah());
             ps.addBatch();
         }
+
         ps.executeBatch();
         ps.close();
         connect.close();
@@ -318,6 +323,10 @@ public class ServicePembelian implements RepositoryPembelian {
             bd.setJumlah(rs.getInt(14));
 
         }
+
+        ps.close();
+        rs.close();
+        connect.close();
         return bd;
     }
 
