@@ -330,4 +330,20 @@ public class ServicePembelian implements RepositoryPembelian {
         return bd;
     }
 
+    @Override
+    public Pembelian save(Pembelian value) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @Deprecated
+    public Pembelian update(String id, Pembelian value) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean exists(String id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

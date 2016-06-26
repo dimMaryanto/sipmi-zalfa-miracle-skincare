@@ -110,7 +110,7 @@ public class ServicePemasok implements RepositoryPemasok {
     }
 
     @Override
-    public Pemasok update(String id, Pemasok p) throws SQLException {
+    public Pemasok update(Integer id, Pemasok value) throws SQLException {
         StringBuilder sb = new StringBuilder("UPDATE ").append(TABLE_NAME).append(" SET ");
         sb.append(COLUMN_NAMA).append(" = ?, ")
                 .append(COLUMN_ALAMAT).append(" = ?, ")
@@ -119,29 +119,34 @@ public class ServicePemasok implements RepositoryPemasok {
 
         Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareCall(sb.toString());
-        ps.setString(1, p.getNama());
-        ps.setString(2, p.getAlamat());
-        ps.setString(3, p.getTlp());
-        ps.setInt(4, p.getKode());
+        ps.setString(1, value.getNama());
+        ps.setString(2, value.getAlamat());
+        ps.setString(3, value.getTlp());
+        ps.setInt(4, value.getKode());
         ps.executeUpdate();
 
         ps.close();
         connect.close();
-        return p;
+        return value;
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(Integer id) throws SQLException {
         StringBuilder sb = new StringBuilder("DELETE FROM ").append(TABLE_NAME);
         sb.append(" WHERE ").append(COLUMN_KODE).append(" = ? ");
 
         Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareCall(sb.toString());
-        ps.setString(1, id);
+        ps.setInt(1, id);
         ps.executeUpdate();
 
         ps.close();
         connect.close();
+    }
+
+    @Override
+    public Boolean exists(Integer id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

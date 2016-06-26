@@ -114,4 +114,9 @@ public class ServiceKategori implements RepositoryKategori {
         connect.close();
     }
 
+    @Override
+    public Boolean exists(Integer id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

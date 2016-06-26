@@ -320,4 +320,21 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
         connect.close();
     }
 
+    @Override
+    @Deprecated
+    public PemesananPembelian save(PemesananPembelian value) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @Deprecated
+    public PemesananPembelian update(String id, PemesananPembelian value) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean exists(String id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

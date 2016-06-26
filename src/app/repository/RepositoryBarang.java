@@ -14,8 +14,8 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface RepositoryBarang {
-    
+public interface RepositoryBarang extends BaseRepository<Barang, String> {
+
     public String TABLE_NAME = "m_barang";
     public String COLUMN_KODE = "kode";
     public String COLUMN_NAMA = "nama";
@@ -23,16 +23,6 @@ public interface RepositoryBarang {
     public String COLUMN_HARGA = "harga";
     public String COLUMN_JUMLAH = "jumlah";
 
-    public Barang findOne(String kode) throws SQLException;
-    
     public List<Barang> findByKategori(Kategori k) throws SQLException;
-
-    public List<Barang> findAll() throws SQLException;
-
-    public Barang save(Barang b) throws SQLException;
-
-    public Barang update(String id, Barang b) throws SQLException;
-
-    public void delete(String id) throws SQLException;
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface RepositoryPemesananPembelian {
+public interface RepositoryPemesananPembelian extends BaseRepository<PemesananPembelian, String> {
 
     public String TABLE_PEMESANAN = "t_pemesanan_pembelian";
     public String TABLE_DETAIL_PEMESANAN = "t_pemesanan_pembelian_detail";
@@ -26,10 +26,6 @@ public interface RepositoryPemesananPembelian {
     public String COLUMN_DETAIL_PEMESANAN_BARANG = "kode_barang";
     public String COLUMN_DETAIL_PEMESANAN_JUMLAH = "jumlah";
 
-    public List<PemesananPembelian> findAll() throws SQLException;
-
-    public PemesananPembelian findOne(String id) throws SQLException;
-
     public PemesananPembelianDetail findByPemesananDetailKode(Integer id) throws SQLException;
 
     public List<PemesananPembelianDetail> findByPemesananKode(String kode) throws SQLException;
@@ -37,7 +33,5 @@ public interface RepositoryPemesananPembelian {
     public void save(PemesananPembelian p, List<PemesananPembelianDetail> pd) throws SQLException;
 
     public void update(PemesananPembelian p, List<PemesananPembelianDetail> pd) throws SQLException;
-
-    public void delete(String kode) throws SQLException;
 
 }

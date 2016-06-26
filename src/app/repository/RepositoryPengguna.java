@@ -5,16 +5,12 @@
  */
 package app.repository;
 
-import app.entity.Kategori;
+import app.entity.Pengguna;
 
 /**
  *
  * @author dimmaryanto
  */
-public interface RepositoryKategori extends BaseRepository<Kategori, Integer> {
-
-    public String TABLE_NAME = "m_kategori";
-    public String COLUMN_KODE = "kode";
-    public String COLUMN_NAME = "nama";
+public interface RepositoryPengguna extends BaseRepository<Pengguna, Integer> {
 
 }

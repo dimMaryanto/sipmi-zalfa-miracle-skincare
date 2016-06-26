@@ -6,14 +6,12 @@
 package app.repository;
 
 import app.entity.Pelanggan;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
  * @author dimmaryanto
  */
-public interface RepositoryPelanggan {
+public interface RepositoryPelanggan extends BaseRepository<Pelanggan, String> {
 
     public String TABLE_NAME = "m_pelanggan";
     public String COLUMN_KODE = "kode";
@@ -22,13 +20,4 @@ public interface RepositoryPelanggan {
     public String COLUMN_TLP = "tlp";
     public String COLUMN_AGEN = "agen";
 
-    public Pelanggan fineOne(String kode) throws SQLException;
-
-    public List<Pelanggan> findAll() throws SQLException;
-
-    public Pelanggan save(Pelanggan p) throws SQLException;
-
-    public Pelanggan update(String id, Pelanggan p) throws SQLException;
-
-    public void delete(String id) throws SQLException;
 }

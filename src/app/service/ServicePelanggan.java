@@ -28,7 +28,7 @@ public class ServicePelanggan implements RepositoryPelanggan {
     }
 
     @Override
-    public Pelanggan fineOne(String kode) throws SQLException {
+    public Pelanggan findOne(String kode) throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT ");
         sb.append(COLUMN_KODE).append(", ")
                 .append(COLUMN_NAMA).append(", ")
@@ -151,6 +151,11 @@ public class ServicePelanggan implements RepositoryPelanggan {
 
         ps.close();
         connect.close();
+    }
+
+    @Override
+    public Boolean exists(String id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

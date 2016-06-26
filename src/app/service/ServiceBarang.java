@@ -171,4 +171,9 @@ public class ServiceBarang implements RepositoryBarang {
         connect.close();
     }
 
+    @Override
+    public Boolean exists(String id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

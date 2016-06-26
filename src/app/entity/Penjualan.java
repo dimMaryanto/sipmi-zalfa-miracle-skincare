@@ -13,18 +13,9 @@ import java.sql.Date;
  */
 public class Penjualan {
 
-    private Integer id;
     private String kode;
     private Date tanggal;
     private Pelanggan pelanggan;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getKode() {
         return kode;

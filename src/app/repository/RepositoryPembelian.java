@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface RepositoryPembelian {
+public interface RepositoryPembelian extends BaseRepository<Pembelian, String> {
 
     public String TABLE_PEMBELIAN = "t_pembelian";
     public String TABLE_DETAIL_PEMBELIAN = "t_pembelian_detail";
@@ -26,10 +26,6 @@ public interface RepositoryPembelian {
     public String COLUMN_DETAIL_PEMBELIAN_BARANG = "kode_barang";
     public String COLUMN_DETAIL_PEMBELIAN_HARGA = "harga";
     public String COLUMN_DETAIL_PEMBELIAN_JUMLAH = "jumlah";
-
-    public List<Pembelian> findAll() throws SQLException;
-
-    public Pembelian findOne(String id) throws SQLException;
 
     public PembelianDetail findByPembelianDetailKode(Integer id) throws SQLException;
 
