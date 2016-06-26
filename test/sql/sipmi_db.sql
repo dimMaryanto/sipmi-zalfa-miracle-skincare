@@ -99,14 +99,14 @@ ADD CONSTRAINT fk_pemesanan_pembelian_pelanggan FOREIGN KEY (kode_pemasok)
 REFERENCES m_pemasok (kode) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO t_pemesanan_pembelian (kode, tgl, kode_pemasok) VALUES
-('PB-20160601-2', '2016-06-01', 2),
-('PB-20160624-4', '2016-06-24', 2),
-('PB-20160625-3', '2016-06-25', 1),
-('PB-20160625-4', '2016-06-25', 1),
-('PB-20160625-5', '2016-06-25', 1),
-('PB-20160625-6', '2016-06-25', 1);
+('PO-20160601-2', '2016-06-01', 2),
+('PO-20160624-4', '2016-06-24', 2),
+('PO-20160625-3', '2016-06-25', 1),
+('PO-20160625-4', '2016-06-25', 1),
+('PO-20160625-5', '2016-06-25', 1),
+('PO-20160625-6', '2016-06-25', 1);
 
-# TABEL DETAIL PEMBELIAN
+# TABEL DETAIL PEMESANAN PEMBELIAN
 
 CREATE TABLE IF NOT EXISTS t_pemesanan_pembelian_detail(
     kode int not null primary key auto_increment,
@@ -122,6 +122,48 @@ REFERENCES t_pemesanan_pembelian (kode)
 ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE t_pemesanan_pembelian_detail
+ADD CONSTRAINT fk_pemesanan_pembelian_detail_barang 
+FOREIGN KEY (kode_barang) 
+REFERENCES m_barang (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+# TABEL PEMBELIAN
+
+CREATE TABLE IF NOT EXISTS t_pembelian(
+    kode varchar(25) not null primary key,
+    tgl date not null,
+    kode_pemasok int not null
+)ENGINE= InnoDB;
+
+ALTER TABLE t_pembelian
+ADD CONSTRAINT fk_pembelian_pelanggan FOREIGN KEY (kode_pemasok)
+REFERENCES m_pemasok (kode) ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO t_pembelian (kode, tgl, kode_pemasok) VALUES
+('PO-20160601-2', '2016-06-01', 2),
+('PO-20160624-4', '2016-06-24', 2),
+('PO-20160625-3', '2016-06-25', 1),
+('PO-20160625-4', '2016-06-25', 1),
+('PO-20160625-5', '2016-06-25', 1),
+('PO-20160625-6', '2016-06-25', 1);
+
+# TABEL DETAIL PEMBELIAN
+
+CREATE TABLE IF NOT EXISTS t_pembelian_detail(
+    kode int not null primary key auto_increment,
+    kode_pemesanan varchar(25) not null,
+    kode_barang varchar(50) not null,
+    harga double not null default 0,
+    jumlah int not null default 0
+) ENGINE=InnoDB;
+
+ALTER TABLE t_pembelian_detail
+ADD CONSTRAINT fk_pemesanan_pembelian_detail_pemesanan 
+FOREIGN KEY (kode_pemesanan) 
+REFERENCES t_pemesanan_pembelian (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE t_pembelian_detail
 ADD CONSTRAINT fk_pemesanan_pembelian_detail_barang 
 FOREIGN KEY (kode_barang) 
 REFERENCES m_barang (kode)
