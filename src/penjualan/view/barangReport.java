@@ -9,18 +9,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Barang;
 import penjualan.implement.barangImplement;
@@ -55,7 +50,6 @@ public class barangReport extends javax.swing.JFrame {
     void loadData() {
         try {
             record = brgRepServis.getAll();
-
         } catch (SQLException ex) {
             Logger.getLogger(barangReport.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -170,18 +164,10 @@ public class barangReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String reportSource = null;
-        String reportDest = null;
         try {
             Connection c = koneksi.getConnection();
-            reportSource = System.getProperty("user.dir") + "/laporan/Laporan_Barang.jrxml";
-            reportDest = System.getProperty("user.dir") + "/laporan/Laporan_Barang.jasper";
-
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, c);
-
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/Laporan_Barang.jasper"), null, c);
             JasperViewer.viewReport(jasperPrint, false);
-
         } catch (Exception e) {
             System.out.println("e");
         }
