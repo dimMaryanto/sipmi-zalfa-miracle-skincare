@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
  */
 public class ServiceBarang implements BarangRepository {
 
-    private DataSource ds;
+    private final DataSource ds;
 
     public ServiceBarang(DataSource ds) {
         this.ds = ds;
@@ -31,8 +32,9 @@ public class ServiceBarang implements BarangRepository {
     @Override
     public Barang findOne(String kode) throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT ");
-        sb.append("b.kode, b.nama, b.harga, b.jumlah, k.kode, k.nama ");
-        sb.append("FROM m_barang b JOIN m_kategori k ON (b.kode_kategori = k.kode) ");
+        sb.append("b." + COLUMN_KODE + ", b." + COLUMN_NAMA + ", b." + COLUMN_HARGA + ", b."
+                + COLUMN_JUMLAH + ", k." + KategoriRepository.COLUMN_KODE + ", k." + KategoriRepository.COLUMN_NAME + " ");
+        sb.append("FROM " + TABLE_NAME + " b JOIN " + KategoriRepository.TABLE_NAME + " k ON (b.kode_kategori = k.kode) ");
         sb.append("WHERE b.kode = ?");
 
         Connection connect = ds.getConnection();
@@ -46,12 +48,10 @@ public class ServiceBarang implements BarangRepository {
             b.setName(hasil.getString(2));
             b.setHarga(hasil.getDouble(3));
             b.setJumlah(hasil.getInt(4));
-            Integer kodeKategori = hasil.getInt(5);
-            Kategori k = null;
-            if (kodeKategori != 0) {
-                KategoriRepository repo = new ServiceKategori(ds);
-                k = repo.findOne(kodeKategori);
-            }
+
+            Kategori k = new Kategori();
+            k.setKode(hasil.getInt(5));
+            k.setNama(hasil.getString(6));
             b.setKategori(k);
         }
         ps.close();
@@ -61,27 +61,114 @@ public class ServiceBarang implements BarangRepository {
 
     @Override
     public List<Barang> findByKategori(Kategori k) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("SELECT * ");
+        sb.append("FROM m_barang ");
+        sb.append("WHERE b.kode_kategori = ?");
+
+        List<Barang> daftarBarang = new ArrayList<>();
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setInt(1, k.getKode());
+        ResultSet hasil = ps.executeQuery();
+        while (hasil.next()) {
+            Barang b = new Barang();
+            b.setKode(hasil.getString(1));
+            b.setName(hasil.getString(2));
+            b.setHarga(hasil.getDouble(3));
+            b.setJumlah(hasil.getInt(4));
+            b.setKategori(k);
+            daftarBarang.add(b);
+        }
+
+        ps.close();
+        connect.close();
+        return daftarBarang;
     }
 
     @Override
     public List<Barang> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("SELECT * ");
+        sb.append("FROM m_barang ");
+
+        List<Barang> daftarBarang = new ArrayList<>();
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ResultSet hasil = ps.executeQuery();
+        while (hasil.next()) {
+            Barang b = new Barang();
+            b.setKode(hasil.getString(1));
+            b.setName(hasil.getString(2));
+            b.setHarga(hasil.getDouble(3));
+            b.setJumlah(hasil.getInt(4));
+            daftarBarang.add(b);
+        }
+
+        ps.close();
+        connect.close();
+        return daftarBarang;
     }
 
     @Override
     public Barang save(Barang b) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("INSERT INTO ").append(TABLE_NAME);
+        sb.append("(")
+                .append(COLUMN_KODE).append(", ")
+                .append(COLUMN_NAMA).append(", ")
+                .append(COLUMN_KATEGORI).append(", ")
+                .append(COLUMN_HARGA).append(", ")
+                .append(COLUMN_JUMLAH)
+                .append(")");
+        sb.append(" VALUES (?, ?, ?, ?, ?)");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setString(1, b.getKode());
+        ps.setString(2, b.getName());
+        ps.setInt(3, b.getKategori().getKode());
+        ps.setDouble(4, b.getHarga());
+        ps.setInt(5, b.getJumlah());
+        ps.executeUpdate();
+        ps.close();
+        connect.close();
+
+        return b;
     }
 
     @Override
     public Barang update(String id, Barang b) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("UPDATE " + TABLE_NAME + " SET ");
+        sb.append(COLUMN_NAMA).append(" = ?, ")
+                .append(COLUMN_KATEGORI).append(" = ?, ")
+                .append(COLUMN_HARGA).append(" = ?, ")
+                .append(COLUMN_JUMLAH).append(" = ? ");
+        sb.append("WHERE " + COLUMN_KODE + " = ? ");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setString(1, b.getName());
+        ps.setInt(2, b.getKategori().getKode());
+        ps.setDouble(3, b.getHarga());
+        ps.setInt(4, b.getJumlah());
+        ps.setString(5, id);
+        ps.executeUpdate();
+
+        ps.close();
+        connect.close();
+        return b;
     }
 
     @Override
     public void delete(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("DELETE FROM " + TABLE_NAME + " ");
+        sb.append("WHERE " + COLUMN_KODE + " = ? ");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setString(1, id);
+        ps.executeUpdate();
+
+        ps.close();
+        connect.close();
     }
 
 }

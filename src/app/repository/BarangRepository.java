@@ -15,6 +15,13 @@ import java.util.List;
  * @author dimmaryanto
  */
 public interface BarangRepository {
+    
+    public String TABLE_NAME = "m_barang";
+    public String COLUMN_KODE = "kode";
+    public String COLUMN_NAMA = "nama";
+    public String COLUMN_KATEGORI = "kode_kategori";
+    public String COLUMN_HARGA = "harga";
+    public String COLUMN_JUMLAH = "jumlah";
 
     public Barang findOne(String kode) throws SQLException;
     
