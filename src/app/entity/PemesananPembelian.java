@@ -13,16 +13,16 @@ import java.sql.Date;
  */
 public class PemesananPembelian {
 
-    private Integer id;
+    private String kode;
     private Date tanggal;
     private Pemasok pemasok;
 
-    public Integer getId() {
-        return id;
+    public String getKode() {
+        return kode;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setKode(String kode) {
+        this.kode = kode;
     }
 
     public Date getTanggal() {

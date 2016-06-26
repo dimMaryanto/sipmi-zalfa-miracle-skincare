@@ -30,9 +30,9 @@ public interface RepositoryPemesananPembelian {
 
     public PemesananPembelian findOne(String id) throws SQLException;
 
-    public PemesananPembelianDetail findByPemesananPembelianDetailKode(Integer id) throws SQLException;
+    public PemesananPembelianDetail findByPemesananDetailKode(Integer id) throws SQLException;
 
-    public List<PemesananPembelianDetail> findByPembelianKode(String kode) throws SQLException;
+    public List<PemesananPembelianDetail> findByPemesananKode(String kode) throws SQLException;
 
     public void save(PemesananPembelian p, List<PemesananPembelianDetail> pd) throws SQLException;
 
