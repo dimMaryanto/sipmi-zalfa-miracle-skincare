@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import penjualan.koneksi.koneksi;
-import pkg10512375_sipenjualan.FMenu;
+import main.FMenu;
 import penjualan.entity.user;
 
 /**

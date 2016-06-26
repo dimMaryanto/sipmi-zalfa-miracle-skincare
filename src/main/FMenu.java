@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg10512375_sipenjualan;
+package main;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
