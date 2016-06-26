@@ -43,8 +43,11 @@ public class ServicePembelian implements RepositoryPembelian {
                 .append("p.").append(RepositoryPemasok.COLUMN_NAMA).append(", ")
                 .append("p.").append(RepositoryPemasok.COLUMN_ALAMAT).append(", ")
                 .append("p.").append(RepositoryPemasok.COLUMN_TLP).append(" ");
-        sb.append(" FROM ").append(TABLE_PEMBELIAN).append(" b ").append(" JOIN ").append(RepositoryPemasok.TABLE_NAME).append(" p ").append(" ON ")
-                .append("(").append(" b.").append(COLUMN_PEMBELIAN_PEMASOK).append(" = ").append("p.").append(RepositoryPemasok.COLUMN_KODE).append(" )");
+        sb.append(" FROM ")
+                .append(TABLE_PEMBELIAN).append(" b ")
+                .append(" JOIN ")
+                .append(RepositoryPemasok.TABLE_NAME).append(" p ")
+                .append(" ON ").append("(").append(" b.").append(COLUMN_PEMBELIAN_PEMASOK).append(" = ").append("p.").append(RepositoryPemasok.COLUMN_KODE).append(" )");
         sb.append(" WHERE ").append("b.").append(COLUMN_PEMBELIAN_KODE).append(" = ? ");
 
         Connection connect = ds.getConnection();
@@ -164,7 +167,41 @@ public class ServicePembelian implements RepositoryPembelian {
 
     @Override
     public List<Pembelian> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder("SELECT ");
+        sb.append("b.").append(COLUMN_PEMBELIAN_KODE).append(", ")
+                .append("b.").append(COLUMN_PEMBELIAN_TGL).append(", ")
+                .append("b.").append(COLUMN_PEMBELIAN_PEMASOK).append(", ")
+                .append("p.").append(RepositoryPemasok.COLUMN_NAMA).append(", ")
+                .append("p.").append(RepositoryPemasok.COLUMN_ALAMAT).append(", ")
+                .append("p.").append(RepositoryPemasok.COLUMN_TLP).append(" ");
+        sb.append(" FROM ")
+                .append(TABLE_PEMBELIAN).append(" b ")
+                .append(" JOIN ")
+                .append(RepositoryPemasok.TABLE_NAME).append(" p ")
+                .append(" ON ").append("(").append(" b.").append(COLUMN_PEMBELIAN_PEMASOK).append(" = ").append("p.").append(RepositoryPemasok.COLUMN_KODE).append(" )");
+
+        List<Pembelian> daftarPembelian = new ArrayList<>();
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Pembelian b = new Pembelian();
+            b.setKode(rs.getString(1));
+            b.setTanggal(rs.getDate(2));
+
+            Pemasok p = new Pemasok();
+            p.setKode(rs.getInt(3));
+            p.setNama(rs.getString(4));
+            p.setAlamat(rs.getString(5));
+            p.setTlp(rs.getString(6));
+            b.setPemasok(p);
+            daftarPembelian.add(b);
+        }
+
+        ps.close();
+        rs.close();
+        connect.close();
+        return daftarPembelian;
     }
 
     @Override

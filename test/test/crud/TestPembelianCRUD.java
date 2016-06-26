@@ -44,5 +44,12 @@ public class TestPembelianCRUD extends TestCase {
         assertNotNull(pd);
         assertEquals(pd.getBarang().getKode(), "PB01");
     }
+    
+    public void testFindAllPembelian() throws SQLException{
+        repo = new ServicePembelian(Koneksi.getDataSource());
+        List<Pembelian> daftarBeli = repo.findAll();
+        assertNotNull(daftarBeli);
+        assertEquals(daftarBeli.size(), 6);
+    }
 
 }
