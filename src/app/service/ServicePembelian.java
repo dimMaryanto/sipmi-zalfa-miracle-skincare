@@ -152,7 +152,40 @@ public class ServicePembelian implements RepositoryPembelian {
 
     @Override
     public void save(Pembelian p, List<PembelianDetail> pd) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sqlBeli = new StringBuilder("INSERT INTO ").append(TABLE_PEMBELIAN);
+        sqlBeli.append("(")
+                .append(COLUMN_PEMBELIAN_KODE).append(", ")
+                .append(COLUMN_PEMBELIAN_TGL).append(", ")
+                .append(COLUMN_PEMBELIAN_PEMASOK).append(") \n");
+        sqlBeli.append("VALUES (?,?,?)");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sqlBeli.toString());
+        ps.setString(1, p.getKode());
+        ps.setDate(2, p.getTanggal());
+        ps.setInt(3, p.getPemasok().getKode());
+        ps.executeUpdate();
+        ps.close();
+
+        StringBuilder sqlDetailBeli = new StringBuilder("INSERT INTO ").append(TABLE_DETAIL_PEMBELIAN);
+        sqlDetailBeli.append("(")
+                .append(COLUMN_DETAIL_PEMBELIAN_BARANG).append(", ")
+                .append(COLUMN_DETAIL_PEMBELIAN_PEMBELIAN).append(", ")
+                .append(COLUMN_DETAIL_PEMBELIAN_HARGA).append(", ")
+                .append(COLUMN_DETAIL_PEMBELIAN_JUMLAH)
+                .append(") ");
+        sqlDetailBeli.append(" VALUES (?,?,?,?)");
+        ps = connect.prepareStatement(sqlDetailBeli.toString());
+        for (PembelianDetail d : pd) {
+            ps.setString(1, d.getBarang().getKode());
+            ps.setString(2, d.getPembelian().getKode());
+            ps.setDouble(3, d.getHarga());
+            ps.setInt(4, d.getJumlah());
+            ps.addBatch();
+        }
+        ps.executeBatch();
+        ps.close();
+        connect.close();
     }
 
     @Override
