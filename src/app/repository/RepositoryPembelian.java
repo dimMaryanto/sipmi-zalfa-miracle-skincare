@@ -39,6 +39,6 @@ public interface RepositoryPembelian {
 
     public void update(Pembelian p, List<PembelianDetail> pd) throws SQLException;
 
-    public void delete(Pembelian p) throws SQLException;
+    public void delete(String kode) throws SQLException;
 
 }

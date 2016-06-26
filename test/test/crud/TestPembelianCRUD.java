@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -92,7 +93,12 @@ public class TestPembelianCRUD extends TestCase {
         daftarBeli.add(pd2);
 
         repo.save(p, daftarBeli);
+    }
 
+    @Test
+    public void testDeletePembelian() throws SQLException {
+        repo = new ServicePembelian(Koneksi.getDataSource());
+        repo.delete("PB-20160625-7");
     }
 
 }

@@ -189,13 +189,22 @@ public class ServicePembelian implements RepositoryPembelian {
     }
 
     @Override
+    @Deprecated
     public void update(Pembelian p, List<PembelianDetail> pd) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Pembelian p) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String p) throws SQLException {
+        StringBuilder sb = new StringBuilder("DELETE FROM ").append(TABLE_PEMBELIAN);
+        sb.append(" WHERE ").append(COLUMN_PEMBELIAN_KODE).append(" = ?");
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setString(1, p);
+        ps.executeUpdate();
+
+        ps.close();
+        connect.close();
     }
 
     @Override
