@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  */
 public class ServicePemasok implements RepositoryPemasok {
 
-    private DataSource ds;
+    private final DataSource ds;
 
     public ServicePemasok(DataSource ds) {
         this.ds = ds;

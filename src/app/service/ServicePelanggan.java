@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  */
 public class ServicePelanggan implements RepositoryPelanggan {
 
-    private DataSource ds;
+    private final DataSource ds;
 
     public ServicePelanggan(DataSource ds) {
         this.ds = ds;
