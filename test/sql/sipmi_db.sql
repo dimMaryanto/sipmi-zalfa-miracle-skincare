@@ -168,3 +168,55 @@ ADD CONSTRAINT fk_pembelian_detail_barang
 FOREIGN KEY (kode_barang) 
 REFERENCES m_barang (kode)
 ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+# TABEL PENJUALAN
+
+CREATE TABLE IF NOT EXISTS t_penjualan(
+    kode varchar(25) not null primary key,
+    tgl date not null,
+    kode_pelanggan varchar(10) not null
+) ENGINE = InnoDB;
+
+ALTER TABLE t_penjualan
+ADD CONSTRAINT fk_penjualan_pelanggan
+FOREIGN KEY (kode_pelanggan)
+REFERENCES m_pelanggan (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+INSERT INTO t_penjualan (kode, tgl, kode_pelanggan) VALUES
+('PO-20160624-1', '2016-06-24', 'P001'),
+('PO-20160625-2', '2016-06-25', 'P001'),
+('PO-20160625-3', '2016-06-25', 'P001'),
+('PO-20160625-4', '2016-06-25', 'P001'),
+('PO-20160625-5', '2016-06-25', 'P001');
+
+# TABEL PENJUALAN DETAIL
+
+CREATE TABLE IF NOT EXISTS t_penjualan_detail(
+    id int not null primary key auto_increment,
+    kode_penjualan varchar(25) not null,
+    kode_barang varchar(50) not null,
+    harga double default 0,
+    jumlah int default 0,
+    diskon double default 0
+) ENGINE = InnoDB;
+
+ALTER TABLE t_penjualan_detail
+ADD CONSTRAINT fk_penjualan_detail_penjualan
+FOREIGN KEY (kode_penjualan)
+REFERENCES t_penjualan (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE t_penjualan_detail
+ADD CONSTRAINT fk_penjualan_detail_barang
+FOREIGN KEY (kode_barang)
+REFERENCES m_barang (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+INSERT INTO t_penjualan_detail (kode_penjualan, kode_barang, harga, diskon, jumlah) VALUES
+('PO-20160625-2', 'PB01', 75000, 11250, 9),
+('PO-20160625-3', 'PW03', 195000, 29250, 1),
+('PO-20160625-4', 'PW01', 189000, 0, 2),
+('PO-20160625-4', 'PW04', 139000, 0, 1),
+('PO-20160625-5', 'PW02', 189000, 28350, 1);
