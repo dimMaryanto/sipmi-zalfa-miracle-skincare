@@ -22,7 +22,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import penjualan.entity.barang;
+import penjualan.entity.Barang;
 import penjualan.implement.barangImplement;
 import penjualan.interfc.barangInterfc;
 import penjualan.koneksi.koneksi;
@@ -33,7 +33,7 @@ import penjualan.koneksi.koneksi;
  */
 public class barangReport extends javax.swing.JFrame {
 
-    List<barang> record = new ArrayList<barang>();
+    List<Barang> record = new ArrayList<Barang>();
     barangInterfc brgRepServis;
     int row;
 
@@ -65,7 +65,7 @@ public class barangReport extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][4];
         int x = 0;
-        for (barang brg : record) {
+        for (Barang brg : record) {
             data[x][0] = brg.getKodeBarang();
             data[x][1] = brg.getNamaBarang();
             data[x][2] = brg.getHarga();

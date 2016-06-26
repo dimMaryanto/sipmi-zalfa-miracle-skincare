@@ -19,7 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import penjualan.entity.JKategori;
-import penjualan.entity.barang;
+import penjualan.entity.Barang;
 import penjualan.implement.JKategoriImplement;
 import penjualan.implement.barangImplement;
 import penjualan.interfc.JKategoriInterfc;
@@ -35,7 +35,7 @@ public class barangView extends javax.swing.JFrame {
     List<JKategori> record = new ArrayList<JKategori>();
     JKategoriInterfc jkategori;
     int row1;
-    List<barang> rekord = new ArrayList<barang>();
+    List<Barang> rekord = new ArrayList<Barang>();
     barangInterfc brgServis;
     int row2;
     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -92,7 +92,7 @@ public class barangView extends javax.swing.JFrame {
     void isiTabel2() {
         Object data[][] = new Object[rekord.size()][6];
         int x = 0;
-        for (barang brg : rekord) {
+        for (Barang brg : rekord) {
             data[x][0] = brg.getKodeBarang();
             data[x][1] = brg.getKodeKategori();
             data[x][2] = brg.getNamaBarang();
@@ -123,7 +123,7 @@ public class barangView extends javax.swing.JFrame {
     }
 
     void isiTextKanan() {
-        barang brg = rekord.get(row2);
+        Barang brg = rekord.get(row2);
         txtKodeBarang.setText(brg.getKodeBarang());
         txtNamaBarang.setText(brg.getNamaBarang());
         txtHarga.setText(String.valueOf(brg.getHarga()));
@@ -607,7 +607,7 @@ public class barangView extends javax.swing.JFrame {
 
     private void hapus4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapus4ActionPerformed
         try {
-            barang kbrg = new barang();
+            Barang kbrg = new Barang();
             String idtipe = txtKodeBarang.getText();
             brgServis.delete(idtipe);
             this.statusAwal();

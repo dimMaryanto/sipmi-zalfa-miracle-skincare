@@ -17,7 +17,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import penjualan.entity.pelanggan;
+import penjualan.entity.Pelanggan;
 import penjualan.implement.pelangganImplement;
 import penjualan.interfc.pelangganInterfc;
 import penjualan.koneksi.koneksi;
@@ -28,7 +28,7 @@ import penjualan.koneksi.koneksi;
  */
 public class pelangganReport extends javax.swing.JFrame {
 
-    List<pelanggan> record = new ArrayList<pelanggan>();
+    List<Pelanggan> record = new ArrayList<Pelanggan>();
     pelangganInterfc pelRepServis;
     int row;
     String setjk;
@@ -62,7 +62,7 @@ public class pelangganReport extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][5];
         int x = 0;
-        for (pelanggan pel : record) {
+        for (Pelanggan pel : record) {
             data[x][0] = pel.getid_pelanggan();
             data[x][1] = pel.getNama();
             data[x][2] = pel.getjp();

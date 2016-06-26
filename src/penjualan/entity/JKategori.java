@@ -11,23 +11,23 @@ package penjualan.entity;
  */
 public class JKategori {
 
-    private String id_kateg;
-    private String kateg;
+    private String kodeKategori;
+    private String nama;
 
     public String getid_kategori() {
-        return id_kateg;
+        return kodeKategori;
     }
 
     public void setid_kategori(String id_kateg) {
-        this.id_kateg = id_kateg;
+        this.kodeKategori = id_kateg;
     }
 
     public String getkategori() {
-        return kateg;
+        return nama;
     }
 
     public void setkategori(String kateg) {
-        this.kateg = kateg;
+        this.nama = kateg;
     }
 
 }

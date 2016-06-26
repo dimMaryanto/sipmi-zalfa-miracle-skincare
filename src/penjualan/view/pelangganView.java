@@ -5,8 +5,6 @@
  */
 package penjualan.view;
 
-import penjualan.entity.pelanggan;
-import penjualan.implement.pelangganImplement;
 import penjualan.interfc.pelangganInterfc;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import penjualan.entity.pelanggan;
+import penjualan.entity.Pelanggan;
 import penjualan.implement.pelangganImplement;
 
 /**
@@ -26,7 +24,7 @@ import penjualan.implement.pelangganImplement;
  */
 public final class pelangganView extends javax.swing.JFrame {
 
-    List<pelanggan> record = new ArrayList<pelanggan>();
+    List<Pelanggan> record = new ArrayList<Pelanggan>();
     pelangganInterfc pelanggan;
     int row;
     String setjk;
@@ -65,7 +63,7 @@ public final class pelangganView extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][5];
         int x = 0;
-        for (pelanggan pel : record) {
+        for (Pelanggan pel : record) {
             data[x][0] = pel.getid_pelanggan();
             data[x][1] = pel.getNama();
             data[x][2] = pel.getjp();
@@ -91,7 +89,7 @@ public final class pelangganView extends javax.swing.JFrame {
 //--coding untuk mengisi text kedalam textfield id, nama, jp, alamat dan nope--//
 
     void isiText() {
-        pelanggan pel = record.get(row);
+        Pelanggan pel = record.get(row);
         txtidpelanggan.setText(pel.getid_pelanggan());
         txtNamaPelanggan.setText(pel.getNama());
         txtAlamat.setText(pel.getalamat());
@@ -354,7 +352,7 @@ public final class pelangganView extends javax.swing.JFrame {
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         // TODO add your handling code here:
         try {
-            pelanggan pel = new pelanggan();
+            Pelanggan pel = new Pelanggan();
             String idPelanggan = txtidpelanggan.getText();
             pelanggan.delete(idPelanggan);
             this.statusAwal();
@@ -368,7 +366,7 @@ public final class pelangganView extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
-            pelanggan pel = new pelanggan();
+            Pelanggan pel = new Pelanggan();
             pel.setid_pelanggan(txtidpelanggan.getText());
             pel.setNama(txtNamaPelanggan.getText());
             if (rbNon.isSelected()) {
@@ -389,7 +387,7 @@ public final class pelangganView extends javax.swing.JFrame {
     private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
         // TODO add your handling code here:
         try {
-            pelanggan pel = new pelanggan();
+            Pelanggan pel = new Pelanggan();
             pel.setid_pelanggan(txtidpelanggan.getText());
             pel.setNama(txtNamaPelanggan.getText());
             if (rbNon.isSelected()) {

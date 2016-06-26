@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import penjualan.koneksi.koneksi;
 import main.FMenu;
-import penjualan.entity.user;
+import penjualan.entity.User;
 
 /**
  *
@@ -18,7 +18,7 @@ import penjualan.entity.user;
  */
 public class login extends javax.swing.JFrame {
 
-    user yousir = new user();
+    User yousir = new User();
 
     /**
      * Creates new form login

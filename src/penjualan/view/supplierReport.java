@@ -17,7 +17,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import penjualan.entity.supplier;
+import penjualan.entity.Supplier;
 import penjualan.implement.supplierImplement;
 import penjualan.interfc.supplierInterfc;
 import penjualan.koneksi.koneksi;
@@ -28,7 +28,7 @@ import penjualan.koneksi.koneksi;
  */
 public class supplierReport extends javax.swing.JFrame {
 
-    List<supplier> record = new ArrayList<supplier>();
+    List<Supplier> record = new ArrayList<Supplier>();
     supplierInterfc spServis;
     int row;
 
@@ -60,7 +60,7 @@ public class supplierReport extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][4];
         int x = 0;
-        for (supplier sp : record) {
+        for (Supplier sp : record) {
             data[x][0] = sp.getkode_supplier();
             data[x][1] = sp.getnama_supplier();
             data[x][2] = sp.getalamat();

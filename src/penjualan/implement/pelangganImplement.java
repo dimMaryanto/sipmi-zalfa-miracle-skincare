@@ -5,7 +5,7 @@
  */
 package penjualan.implement;
 
-import penjualan.entity.pelanggan;
+import penjualan.entity.Pelanggan;
 import penjualan.koneksi.koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import penjualan.entity.pelanggan;
+import penjualan.entity.Pelanggan;
 import penjualan.interfc.pelangganInterfc;
 
 /**
@@ -23,12 +23,12 @@ import penjualan.interfc.pelangganInterfc;
 public class pelangganImplement implements pelangganInterfc {
 //---untuk select atau view datapelanggan dari DB ke form----//  
 
-    public List<pelanggan> getAll() throws SQLException {
+    public List<Pelanggan> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from pelanggan");
-        List<pelanggan> list = new ArrayList<pelanggan>();
+        List<Pelanggan> list = new ArrayList<Pelanggan>();
         while (rs.next()) {
-            pelanggan pel = new pelanggan();
+            Pelanggan pel = new Pelanggan();
             pel.setid_pelanggan(rs.getString("id_pelanggan"));
             pel.setNama(rs.getString("nama"));
             pel.setjp(rs.getString("jp"));
@@ -40,7 +40,7 @@ public class pelangganImplement implements pelangganInterfc {
     }
 
     //---untuk insert ke database---//
-    public pelanggan insert(pelanggan o) throws SQLException {
+    public Pelanggan insert(Pelanggan o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into pelanggan values (?,?,?,?,?)");
         st.setString(1, o.getid_pelanggan());
         st.setString(2, o.getNama());
@@ -52,7 +52,7 @@ public class pelangganImplement implements pelangganInterfc {
     }
 //--untuk update ke database--//
 
-    public void update(pelanggan o) throws SQLException {
+    public void update(Pelanggan o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update pelanggan set"
                 + " nama=?,jp=?,alamat=?,notlp=? where id_pelanggan=?");
         st.setString(1, o.getNama());

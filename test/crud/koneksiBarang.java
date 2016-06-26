@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.koneksi;
+package crud;
 
 /**
  *
@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import penjualan.koneksi.koneksi;
 import penjualan.koneksi.koneksi;
 
 public class koneksiBarang {

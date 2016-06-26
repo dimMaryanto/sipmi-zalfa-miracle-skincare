@@ -4,7 +4,7 @@ package penjualan.entity;
  *
  * @author Lani
  */
-public class barang {
+public class Barang {
 
     private String kodeBarang;
     private String kodeKategori;

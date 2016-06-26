@@ -5,7 +5,7 @@
  */
 package penjualan.implement;
 
-import penjualan.entity.supplier;
+import penjualan.entity.Supplier;
 import penjualan.koneksi.koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import penjualan.entity.supplier;
+import penjualan.entity.Supplier;
 import penjualan.interfc.supplierInterfc;
 
 /**
@@ -22,12 +22,12 @@ import penjualan.interfc.supplierInterfc;
  */
 public class supplierImplement implements supplierInterfc {
 
-    public List<supplier> getAll() throws SQLException {
+    public List<Supplier> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from supplier");
-        List<supplier> list = new ArrayList<supplier>();
+        List<Supplier> list = new ArrayList<Supplier>();
         while (rs.next()) {
-            supplier sp = new supplier();
+            Supplier sp = new Supplier();
             sp.setkode_supplier(rs.getString("kode_supplier"));
             sp.setnama(rs.getString("nama_supplier"));
             sp.setalamat(rs.getString("alamat"));
@@ -38,7 +38,7 @@ public class supplierImplement implements supplierInterfc {
     }
 
 //---untuk insert ke database---//
-    public supplier insert(supplier o) throws SQLException {
+    public Supplier insert(Supplier o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into supplier values (?,?,?,?)");
         st.setString(1, o.getkode_supplier());
         st.setString(2, o.getnama_supplier());
@@ -49,7 +49,7 @@ public class supplierImplement implements supplierInterfc {
     }
 //--untuk update ke database--//
 
-    public void update(supplier o) throws SQLException {
+    public void update(Supplier o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update supplier set"
                 + " nama_supplier=?,alamat=?,notlp=? where kode_supplier=?");
         st.setString(1, o.getnama_supplier());

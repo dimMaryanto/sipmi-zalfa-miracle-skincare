@@ -20,18 +20,6 @@ SET time_zone = "+00:00";
 -- Database: `si_si9_penjualan`
 --
 
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `a`
---
-CREATE TABLE IF NOT EXISTS `a` (
-`kode_barang` varchar(30)
-,`jumlah` decimal(33,0)
-,`nama_barang` varchar(50)
-,`harga` int(8)
-);
--- --------------------------------------------------------
 
 --
 -- Table structure for table `barang`
@@ -41,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `barang` (
   `kode_barang` varchar(30) NOT NULL,
   `id_kategori` int(4) NOT NULL,
   `nama_barang` varchar(50) NOT NULL,
-  `harga` int(8) NOT NULL,
-  `jumlah` int(4) NOT NULL,
+  `harga` double NOT NULL,
+  `jumlah` int(8) NOT NULL,
   PRIMARY KEY (`kode_barang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -60,69 +48,6 @@ INSERT INTO `barang` (`kode_barang`, `id_kategori`, `nama_barang`, `harga`, `jum
 ('PW06', 1, 'Cleansing Milk', 32000, 46),
 ('PW07', 1, 'Enzyme Peeling', 139000, 41);
 
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `beli`
---
-CREATE TABLE IF NOT EXISTS `beli` (
-`kode_barang` varchar(30)
-,`id_kategori` int(4)
-,`nama_barang` varchar(50)
-,`harga` int(8)
-,`jum` decimal(33,0)
-);
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_beli`
---
-
-CREATE TABLE IF NOT EXISTS `detail_beli` (
-  `no_struk` varchar(15) NOT NULL,
-  `kode_barang` varchar(5) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  KEY `kode_barang` (`kode_barang`),
-  KEY `no_struk` (`no_struk`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `detail_beli`
---
-
-INSERT INTO `detail_beli` (`no_struk`, `kode_barang`, `harga`, `jumlah`) VALUES
-('PB-20160625-3', 'PW01', 189000, 50),
-('PB-20160625-4', 'PB01', 75000, 10),
-('PB-20160625-5', 'PB01', 75000, 5),
-('PB-20160625-6', 'PB01', 75000, 29);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_jual`
---
-
-CREATE TABLE IF NOT EXISTS `detail_jual` (
-  `no_faktur` varchar(25) NOT NULL,
-  `kode_barang` varchar(5) NOT NULL,
-  `harga` varchar(30) NOT NULL,
-  `diskon` varchar(30) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  KEY `kode_barang` (`kode_barang`),
-  KEY `no_faktur` (`no_faktur`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `detail_jual`
---
-
-INSERT INTO `detail_jual` (`no_faktur`, `kode_barang`, `harga`, `diskon`, `jumlah`) VALUES
-('PO-20160625-2', 'PB01', '75000', '11250', 9),
-('PO-20160625-3', 'PW03', '195000', '29250', 1),
-('PO-20160625-4', 'PW01', '189000', '0', 2),
-('PO-20160625-4', 'PW04', '139000', '0', 1),
-('PO-20160625-5', 'PW02', '189000', '28350', 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `jp`, `alamat`, `notlp`) VALUES
-(' N003', ' kiki', 'NoN Agen', ' bandung', ' 0987876765545'),
+('N003', ' kiki', 'NoN Agen', ' bandung', ' 0987876765545'),
 ('N001', ' Ulvia', 'NoN Agen', 'Gerlong Bandung', ' 085221101909'),
 ('N002', ' Febry', 'NoN Agen', 'dago, bandung', ' 087678987123'),
 ('P001', 'Meri', 'Agen', 'surabaya', '087987676565'),
@@ -198,6 +123,29 @@ INSERT INTO `pembelian` (`no_struk`, `tgl_pembelian`, `kode_supplier`) VALUES
 ('PB-20160625-5', '2016-06-25', 1),
 ('PB-20160625-6', '2016-06-25', 1);
 
+--
+-- Table structure for table `detail_beli`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_beli` (
+  `no_struk` varchar(15) NOT NULL,
+  `kode_barang` varchar(5) NOT NULL,
+  `harga` double NOT NULL,
+  `jumlah` int NOT NULL,
+  KEY `kode_barang` (`kode_barang`),
+  KEY `no_struk` (`no_struk`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_beli`
+--
+
+INSERT INTO `detail_beli` (`no_struk`, `kode_barang`, `harga`, `jumlah`) VALUES
+('PB-20160625-3', 'PW01', 189000, 50),
+('PB-20160625-4', 'PB01', 75000, 10),
+('PB-20160625-5', 'PB01', 75000, 5),
+('PB-20160625-6', 'PB01', 75000, 29);
+
 -- --------------------------------------------------------
 
 --
@@ -223,43 +171,32 @@ INSERT INTO `penjualan` (`no_faktur`, `tgl_penjualan`, `id_pelanggan`) VALUES
 ('PO-20160625-4', '2016-06-25', 'N001'),
 ('PO-20160625-5', '2016-06-25', 'P001');
 
--- --------------------------------------------------------
+--
+-- Table structure for table `detail_jual`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_jual` (
+  `no_faktur` varchar(25) NOT NULL,
+  `kode_barang` varchar(5) NOT NULL,
+  `harga` double NOT NULL,
+  `diskon` double NOT NULL,
+  `jumlah` int NOT NULL,
+  KEY `kode_barang` (`kode_barang`),
+  KEY `no_faktur` (`no_faktur`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Stand-in structure for view `q`
+-- Dumping data for table `detail_jual`
 --
-CREATE TABLE IF NOT EXISTS `q` (
-`kode_barang` varchar(30)
-,`id_kategori` int(4)
-,`nama_barang` varchar(50)
-,`harga` int(8)
-,`jum` decimal(33,0)
-);
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `st`
---
-CREATE TABLE IF NOT EXISTS `st` (
-`kode_barang` varchar(30)
-,`jumlah` decimal(32,0)
-,`nama_barang` varchar(50)
-,`harga` int(8)
-);
--- --------------------------------------------------------
+INSERT INTO `detail_jual` (`no_faktur`, `kode_barang`, `harga`, `diskon`, `jumlah`) VALUES
+('PO-20160625-2', 'PB01', 75000, 11250, 9),
+('PO-20160625-3', 'PW03', 195000, 29250, 1),
+('PO-20160625-4', 'PW01', 189000, 0, 2),
+('PO-20160625-4', 'PW04', 139000, 0, 1),
+('PO-20160625-5', 'PW02', 189000, 28350, 1);
 
---
--- Stand-in structure for view `stok`
---
-CREATE TABLE IF NOT EXISTS `stok` (
-`kode_barang` varchar(30)
-,`id_kategori` int(4)
-,`nama_barang` varchar(50)
-,`harga` int(8)
-,`jumlah` decimal(34,0)
-);
--- --------------------------------------------------------
-
+--------------------------------------------------------------------------------------
 --
 -- Table structure for table `supplier`
 --
@@ -306,53 +243,6 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`, `jabatan`, `status`) V
 (3, 'wulan', 'wulan', 'kasir', 'kasir', 'OFF');
 
 -- --------------------------------------------------------
-
---
--- Structure for view `a`
---
-DROP TABLE IF EXISTS `a`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `a` AS select `s`.`kode_barang` AS `kode_barang`,coalesce((`s`.`jumlah` - sum(`j`.`jumlah`)),0) AS `jumlah`,`s`.`nama_barang` AS `nama_barang`,`s`.`harga` AS `harga` from (`st` `s` left join `detail_jual` `j` on((`s`.`kode_barang` = `j`.`kode_barang`))) group by `s`.`kode_barang`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `beli`
---
-DROP TABLE IF EXISTS `beli`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `beli` AS select `b`.`kode_barang` AS `kode_barang`,`b`.`id_kategori` AS `id_kategori`,`b`.`nama_barang` AS `nama_barang`,`b`.`harga` AS `harga`,(`b`.`jumlah` + sum(`db`.`jumlah`)) AS `jum` from (`barang` `b` join `detail_beli` `db` on((`b`.`kode_barang` = `db`.`kode_barang`))) group by `b`.`kode_barang`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `q`
---
-DROP TABLE IF EXISTS `q`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `q` AS select `b`.`kode_barang` AS `kode_barang`,`b`.`id_kategori` AS `id_kategori`,`b`.`nama_barang` AS `nama_barang`,`b`.`harga` AS `harga`,(`b`.`jumlah` + sum(`db`.`jumlah`)) AS `jum` from (`barang` `b` join `detail_beli` `db` on((`b`.`kode_barang` = `db`.`kode_barang`))) group by `b`.`kode_barang`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `st`
---
-DROP TABLE IF EXISTS `st`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `st` AS select `br`.`kode_barang` AS `kode_barang`,sum(`b`.`jumlah`) AS `jumlah`,`br`.`nama_barang` AS `nama_barang`,`br`.`harga` AS `harga` from (`barang` `br` left join `detail_beli` `b` on((`b`.`kode_barang` = `br`.`kode_barang`))) group by `b`.`kode_barang`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `stok`
---
-DROP TABLE IF EXISTS `stok`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stok` AS select `q`.`kode_barang` AS `kode_barang`,`q`.`id_kategori` AS `id_kategori`,`q`.`nama_barang` AS `nama_barang`,`q`.`harga` AS `harga`,(`q`.`jum` - coalesce(sum(`dj`.`jumlah`),0)) AS `jumlah` from (`q` left join `detail_jual` `dj` on((`q`.`kode_barang` = `dj`.`kode_barang`))) group by `q`.`kode_barang`;
-
---
--- Constraints for dumped tables
---
 
 --
 -- Constraints for table `detail_beli`

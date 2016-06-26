@@ -5,7 +5,7 @@
  */
 package penjualan.interfc;
 
-import penjualan.entity.supplier;
+import penjualan.entity.Supplier;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,9 +17,9 @@ public interface supplierInterfc {
 
     List getAll() throws SQLException;
 
-    supplier insert(supplier o) throws SQLException;
+    Supplier insert(Supplier o) throws SQLException;
 
-    void update(supplier o) throws SQLException;
+    void update(Supplier o) throws SQLException;
 
     void delete(String kode_supplier) throws SQLException;
 

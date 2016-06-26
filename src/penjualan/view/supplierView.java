@@ -5,7 +5,7 @@
  */
 package penjualan.view;
 
-import penjualan.entity.supplier;
+import penjualan.entity.Supplier;
 import penjualan.implement.supplierImplement;
 import penjualan.interfc.supplierInterfc;
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class supplierView extends javax.swing.JFrame {
 
-    List<supplier> record = new ArrayList<supplier>();
+    List<Supplier> record = new ArrayList<Supplier>();
     supplierInterfc spSuppler;
     int row;
 
@@ -61,7 +61,7 @@ public final class supplierView extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][4];
         int x = 0;
-        for (supplier sp : record) {
+        for (Supplier sp : record) {
             data[x][0] = sp.getkode_supplier();
             data[x][1] = sp.getnama_supplier();
             data[x][2] = sp.getalamat();
@@ -85,7 +85,7 @@ public final class supplierView extends javax.swing.JFrame {
 //--coding untuk mengisi text kedalam textfield id, nama, jk, alamat dan nope--//
 
     void isiText() {
-        supplier sp = record.get(row);
+        Supplier sp = record.get(row);
         tKode.setText(sp.getkode_supplier());
         tnamaSupplier.setText(sp.getnama_supplier());
         talamat.setText(sp.getalamat());
@@ -320,7 +320,7 @@ public final class supplierView extends javax.swing.JFrame {
     private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
         // TODO add your handling code here:
         try {
-            supplier sp = new supplier();
+            Supplier sp = new Supplier();
             sp.setkode_supplier(tKode.getText());
             sp.setnama(tnamaSupplier.getText());
             sp.setalamat(talamat.getText());
@@ -336,7 +336,7 @@ public final class supplierView extends javax.swing.JFrame {
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         // TODO add your handling code here:
         try {
-            supplier sp = new supplier();
+            Supplier sp = new Supplier();
             String kode_supplier = tKode.getText();
             spSuppler.delete(kode_supplier);
             this.statusAwal();
@@ -349,7 +349,7 @@ public final class supplierView extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
-            supplier sp = new supplier();
+            Supplier sp = new Supplier();
             sp.setkode_supplier(tKode.getText());
             sp.setnama(tnamaSupplier.getText());
             sp.setalamat(talamat.getText());
