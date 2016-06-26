@@ -12,14 +12,12 @@ import app.entity.Pembelian;
 import app.entity.PembelianDetail;
 import app.repository.RepositoryPembelian;
 import app.service.ServicePembelian;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

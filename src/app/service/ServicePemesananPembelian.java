@@ -266,10 +266,43 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
 
     @Override
     public void save(PemesananPembelian p, List<PemesananPembelianDetail> pd) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sqlBeli = new StringBuilder("INSERT INTO ").append(TABLE_PEMESANAN);
+        sqlBeli.append("(")
+                .append(COLUMN_PEMESANAN_KODE).append(", ")
+                .append(COLUMN_PEMESANAN_TGL).append(", ")
+                .append(COLUMN_PEMESANAN_PEMASOK).append(") \n");
+        sqlBeli.append("VALUES (?,?,?)");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sqlBeli.toString());
+        ps.setString(1, p.getKode());
+        ps.setDate(2, p.getTanggal());
+        ps.setInt(3, p.getPemasok().getKode());
+        ps.executeUpdate();
+        ps.close();
+
+        StringBuilder sqlDetailBeli = new StringBuilder("INSERT INTO ").append(TABLE_DETAIL_PEMESANAN);
+        sqlDetailBeli.append("(")
+                .append(COLUMN_DETAIL_PEMESANAN_BARANG).append(", ")
+                .append(COLUMN_DETAIL_PEMESANAN_PEMBELIAN).append(", ")
+                .append(COLUMN_DETAIL_PEMESANAN_JUMLAH)
+                .append(") ");
+        sqlDetailBeli.append(" VALUES (?,?,?)");
+        ps = connect.prepareStatement(sqlDetailBeli.toString());
+        for (PemesananPembelianDetail d : pd) {
+            ps.setString(1, d.getBarang().getKode());
+            ps.setString(2, d.getPesanPembelian().getKode());
+            ps.setInt(3, d.getJumlah());
+            ps.addBatch();
+        }
+
+        ps.executeBatch();
+        ps.close();
+        connect.close();
     }
 
     @Override
+    @Deprecated
     public void update(PemesananPembelian p, List<PemesananPembelianDetail> pd) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

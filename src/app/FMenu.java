@@ -16,7 +16,6 @@ import penjualan.view.barangReport;
 import penjualan.view.barangView;
 import penjualan.view.laporanBeli;
 import penjualan.view.laporanJual;
-import penjualan.view.login;
 import penjualan.view.pelangganReport;
 import penjualan.view.pelangganView;
 import penjualan.view.supplierReport;
@@ -488,6 +487,7 @@ public class FMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new FMenu().setVisible(true);
@@ -525,7 +525,4 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
-    public void setVisibel(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
