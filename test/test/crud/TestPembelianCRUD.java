@@ -22,7 +22,6 @@ import org.junit.Test;
 public class TestPembelianCRUD extends TestCase {
 
     private RepositoryPembelian repo;
-    
 
     @Test
     public void testFindOne() throws SQLException {
@@ -32,11 +31,18 @@ public class TestPembelianCRUD extends TestCase {
         assertEquals(p.getPemasok().getKode(), Integer.valueOf(2));
 
     }
-    
-    public void testFindByPembelianDetail() throws SQLException{
+
+    public void testFindByPembelianDetail() throws SQLException {
         repo = new ServicePembelian(Koneksi.getDataSource());
         List<PembelianDetail> pd = repo.findByPembelianKode("PB-20160601-2");
         assertEquals(pd.size(), 4);
+    }
+
+    public void testFindOneByPembelianDetail() throws SQLException {
+        repo = new ServicePembelian(Koneksi.getDataSource());
+        PembelianDetail pd = repo.findByPembelianDetailKode(2);
+        assertNotNull(pd);
+        assertEquals(pd.getBarang().getKode(), "PB01");
     }
 
 }

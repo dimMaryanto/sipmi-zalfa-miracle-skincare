@@ -169,7 +169,77 @@ public class ServicePembelian implements RepositoryPembelian {
 
     @Override
     public PembelianDetail findByPembelianDetailKode(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT ")
+                .append("b.").append(COLUMN_PEMBELIAN_KODE).append(", ")
+                .append("b.").append(COLUMN_PEMBELIAN_TGL).append(", \n")
+                .append("pm.").append(RepositoryPemasok.COLUMN_KODE).append(", ")
+                .append("pm.").append(RepositoryPemasok.COLUMN_NAMA).append(", ")
+                .append("pm.").append(RepositoryPemasok.COLUMN_ALAMAT).append(", ")
+                .append("pm.").append(RepositoryPemasok.COLUMN_TLP).append(", ")
+                .append("brg.").append(RepositoryBarang.COLUMN_KODE).append(", ")
+                .append("brg.").append(RepositoryBarang.COLUMN_NAMA).append(", \n")
+                .append("kb.").append(RepositoryKategori.COLUMN_KODE).append(", ")
+                .append("kb.").append(RepositoryKategori.COLUMN_NAME).append(", ")
+                .append("brg.").append(RepositoryBarang.COLUMN_HARGA).append(", ")
+                .append("brg.").append(RepositoryBarang.COLUMN_JUMLAH).append(", \n")
+                .append("bd.").append(COLUMN_DETAIL_PEMBELIAN_HARGA).append(", ")
+                .append("bd.").append(COLUMN_DETAIL_PEMBELIAN_JUMLAH).append(" \n");
+        sb.append(" FROM ")
+                .append(TABLE_DETAIL_PEMBELIAN).append(" bd ")
+                .append(" JOIN ")
+                .append(TABLE_PEMBELIAN).append(" b ")
+                .append(" ON (").append("bd.").append(COLUMN_DETAIL_PEMBELIAN_PEMBELIAN).append(" = ").append("b.").append(COLUMN_PEMBELIAN_KODE).append(") \n")
+                .append(" JOIN ")
+                .append(RepositoryBarang.TABLE_NAME).append(" brg ")
+                .append(" ON (").append("brg.").append(RepositoryBarang.COLUMN_KODE).append(" = ").append("bd.").append(COLUMN_DETAIL_PEMBELIAN_BARANG).append(") \n")
+                .append(" JOIN ")
+                .append(RepositoryKategori.TABLE_NAME).append(" kb ")
+                .append(" ON (").append("brg.").append(RepositoryBarang.COLUMN_KATEGORI).append(" = ").append("kb.").append(RepositoryKategori.COLUMN_KODE).append(") \n")
+                .append(" JOIN ")
+                .append(RepositoryPemasok.TABLE_NAME).append(" pm ")
+                .append(" ON (").append("pm.").append(RepositoryPemasok.COLUMN_KODE).append(" = ").append("b.").append(COLUMN_PEMBELIAN_PEMASOK).append(") \n");
+        sb.append(" WHERE bd.").append(COLUMN_DETAIL_PEMBELIAN_KODE).append(" = ?");
+
+        System.out.println(sb.toString());
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        PembelianDetail bd = null;
+        if (rs.next()) {
+            bd = new PembelianDetail();
+
+            Pembelian b = new Pembelian();
+            b.setKode(rs.getString(1));
+            b.setTanggal(rs.getDate(2));
+
+            Pemasok pm = new Pemasok();
+            pm.setKode(rs.getInt(3));
+            pm.setNama(rs.getString(4));
+            pm.setAlamat(rs.getString(5));
+            pm.setTlp(rs.getString(6));
+            b.setPemasok(pm);
+
+            Barang brg = new Barang();
+
+            Kategori kb = new Kategori();
+            kb.setKode(rs.getInt(9));
+            kb.setNama(rs.getString(10));
+
+            brg.setKategori(kb);
+            brg.setKode(rs.getString(7));
+            brg.setName(rs.getString(8));
+            brg.setHarga(rs.getDouble(11));
+            brg.setJumlah(rs.getInt(12));
+
+            bd.setPembelian(b);
+            bd.setBarang(brg);
+            bd.setHarga(rs.getDouble(13));
+            bd.setJumlah(rs.getInt(14));
+
+        }
+        return bd;
     }
 
 }
