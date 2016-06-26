@@ -1,6 +1,6 @@
 package penjualan.implement;
 
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;

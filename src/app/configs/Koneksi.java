@@ -1,4 +1,4 @@
-package penjualan.koneksi;
+package app.configs;
 
 /**
  *

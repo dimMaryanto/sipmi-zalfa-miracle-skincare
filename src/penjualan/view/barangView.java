@@ -24,7 +24,7 @@ import penjualan.implement.JKategoriImplement;
 import penjualan.implement.barangImplement;
 import penjualan.interfc.JKategoriInterfc;
 import penjualan.interfc.barangInterfc;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 
 /**
  *

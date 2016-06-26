@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import penjualan.entity.JKategori;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 import penjualan.interfc.JKategoriInterfc;
 //import penjualan.view.barangview;
 

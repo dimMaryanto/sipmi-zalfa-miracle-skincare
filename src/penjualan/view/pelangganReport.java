@@ -20,7 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Pelanggan;
 import penjualan.implement.pelangganImplement;
 import penjualan.interfc.pelangganInterfc;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 
 /**
  *

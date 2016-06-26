@@ -17,7 +17,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Supplier;
 import penjualan.implement.supplierImplement;
 import penjualan.interfc.supplierInterfc;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 
 /**
  *

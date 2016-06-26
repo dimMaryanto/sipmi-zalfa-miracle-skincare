@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 import penjualan.view.barangReport;
 import penjualan.view.barangView;
 import penjualan.view.laporanBeli;

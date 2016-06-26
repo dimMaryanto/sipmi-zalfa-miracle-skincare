@@ -11,19 +11,10 @@ package app.entity;
  */
 public class Pelanggan {
 
-    private Integer id;
     private String kode;
     private String nama;
     private String tlp;
     private Boolean agen;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getKode() {
         return kode;

@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
 
 public class hapusbarang {
 

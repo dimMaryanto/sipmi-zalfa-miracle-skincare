@@ -12,8 +12,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import penjualan.koneksi.Koneksi;
-import penjualan.koneksi.Koneksi;
+import app.configs.Koneksi;
+import app.configs.Koneksi;
 
 public class koneksiBarang {
 
