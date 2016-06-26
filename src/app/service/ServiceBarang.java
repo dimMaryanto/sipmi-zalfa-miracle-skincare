@@ -62,8 +62,8 @@ public class ServiceBarang implements BarangRepository {
     @Override
     public List<Barang> findByKategori(Kategori k) throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT * ");
-        sb.append("FROM m_barang ");
-        sb.append("WHERE b.kode_kategori = ?");
+        sb.append("FROM " + TABLE_NAME);
+        sb.append("WHERE " + COLUMN_KATEGORI + " = ?");
 
         List<Barang> daftarBarang = new ArrayList<>();
         Connection connect = ds.getConnection();
@@ -88,7 +88,7 @@ public class ServiceBarang implements BarangRepository {
     @Override
     public List<Barang> findAll() throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT * ");
-        sb.append("FROM m_barang ");
+        sb.append("FROM ").append(TABLE_NAME);
 
         List<Barang> daftarBarang = new ArrayList<>();
         Connection connect = ds.getConnection();
