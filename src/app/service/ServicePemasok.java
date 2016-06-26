@@ -28,7 +28,7 @@ public class ServicePemasok implements RepositoryPemasok {
     }
 
     @Override
-    public Pemasok fineOne(String kode) throws SQLException {
+    public Pemasok findOne(Integer kode) throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT ");
         sb.append(COLUMN_KODE).append(", ")
                 .append(COLUMN_NAMA).append(", ")
@@ -39,7 +39,7 @@ public class ServicePemasok implements RepositoryPemasok {
 
         Connection connent = ds.getConnection();
         PreparedStatement ps = connent.prepareStatement(sb.toString());
-        ps.setString(1, kode);
+        ps.setInt(1, kode);
         ResultSet rs = ps.executeQuery();
         Pemasok p = null;
         if (rs.next()) {

@@ -21,7 +21,7 @@ public interface RepositoryPemasok {
     public String COLUMN_ALAMAT = "alamat";
     public String COLUMN_TLP = "tlp";
 
-    public Pemasok fineOne(String kode) throws SQLException;
+    public Pemasok findOne(Integer kode) throws SQLException;
 
     public List<Pemasok> findAll() throws SQLException;
 

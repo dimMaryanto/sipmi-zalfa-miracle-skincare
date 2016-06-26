@@ -151,16 +151,22 @@ INSERT INTO t_pembelian (kode, tgl, kode_pemasok) VALUES
 
 CREATE TABLE IF NOT EXISTS t_pembelian_detail(
     kode int not null primary key auto_increment,
-    kode_pemesanan varchar(25) not null,
+    kode_pembelian varchar(25) not null,
     kode_barang varchar(50) not null,
     harga double not null default 0,
     jumlah int not null default 0
 ) ENGINE=InnoDB;
 
+INSERT INTO t_pembelian_detail (kode_pembelian, kode_barang, harga, jumlah) VALUES
+('PB-20160601-2', 'PW01', 189000, 50),
+('PB-20160601-2', 'PB01', 75000, 10),
+('PB-20160601-2', 'PB01', 75000, 5),
+('PB-20160601-2', 'PB01', 75000, 29);
+
 ALTER TABLE t_pembelian_detail
-ADD CONSTRAINT fk_pembelian_detail_pemesanan 
-FOREIGN KEY (kode_pemesanan) 
-REFERENCES t_pemesanan_pembelian (kode)
+ADD CONSTRAINT fk_pembelian_detail_pembelian 
+FOREIGN KEY (kode_pembelian) 
+REFERENCES t_pembelian (kode)
 ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE t_pembelian_detail
