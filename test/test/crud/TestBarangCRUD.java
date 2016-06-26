@@ -7,11 +7,11 @@ package test.crud;
 
 import app.configs.Koneksi;
 import app.entity.Barang;
-import app.repository.BarangRepository;
 import app.service.ServiceBarang;
 import java.sql.SQLException;
 import junit.framework.TestCase;
 import org.junit.Test;
+import app.repository.RepositoryBarang;
 
 /**
  *
@@ -21,7 +21,7 @@ public class TestBarangCRUD extends TestCase {
 
     @Test
     public void testFindBarangById() throws SQLException {
-        BarangRepository repo = new ServiceBarang(Koneksi.getDataSource());
+        RepositoryBarang repo = new ServiceBarang(Koneksi.getDataSource());
         Barang b = repo.findOne("PB01");
         assertNotNull(b);
         assertEquals(b.getName(), "Handbody");

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface KategoriRepository {
+public interface RepositoryKategori {
     
     public String TABLE_NAME = "m_kategori";
     public String COLUMN_KODE = "kode";

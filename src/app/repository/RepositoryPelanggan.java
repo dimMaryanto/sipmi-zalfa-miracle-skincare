@@ -13,7 +13,14 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface PelangganRepository {
+public interface RepositoryPelanggan {
+
+    public String TABLE_NAME = "m_pelanggan";
+    public String COLUMN_KODE = "kode";
+    public String COLUMN_NAMA = "nama";
+    public String COLUMN_ALAMAT = "alamat";
+    public String COLUMN_TLP = "tlp";
+    public String COLUMN_AGEN = "agen";
 
     public Pelanggan fineOne(String kode) throws SQLException;
 

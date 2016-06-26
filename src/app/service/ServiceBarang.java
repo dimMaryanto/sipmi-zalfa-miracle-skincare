@@ -7,8 +7,6 @@ package app.service;
 
 import app.entity.Barang;
 import app.entity.Kategori;
-import app.repository.BarangRepository;
-import app.repository.KategoriRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import app.repository.RepositoryBarang;
+import app.repository.RepositoryKategori;
 
 /**
  *
  * @author dimmaryanto
  */
-public class ServiceBarang implements BarangRepository {
+public class ServiceBarang implements RepositoryBarang {
 
     private final DataSource ds;
 
@@ -33,8 +33,8 @@ public class ServiceBarang implements BarangRepository {
     public Barang findOne(String kode) throws SQLException {
         StringBuilder sb = new StringBuilder("SELECT ");
         sb.append("b." + COLUMN_KODE + ", b." + COLUMN_NAMA + ", b." + COLUMN_HARGA + ", b."
-                + COLUMN_JUMLAH + ", k." + KategoriRepository.COLUMN_KODE + ", k." + KategoriRepository.COLUMN_NAME + " ");
-        sb.append("FROM " + TABLE_NAME + " b JOIN " + KategoriRepository.TABLE_NAME + " k ON (b.kode_kategori = k.kode) ");
+                + COLUMN_JUMLAH + ", k." + RepositoryKategori.COLUMN_KODE + ", k." + RepositoryKategori.COLUMN_NAME + " ");
+        sb.append("FROM " + TABLE_NAME + " b JOIN " + RepositoryKategori.TABLE_NAME + " k ON (b.kode_kategori = k.kode) ");
         sb.append("WHERE b.kode = ?");
 
         Connection connect = ds.getConnection();

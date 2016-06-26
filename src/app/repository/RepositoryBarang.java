@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author dimmaryanto
  */
-public interface BarangRepository {
+public interface RepositoryBarang {
     
     public String TABLE_NAME = "m_barang";
     public String COLUMN_KODE = "kode";

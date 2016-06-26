@@ -13,6 +13,7 @@ public class Pelanggan {
 
     private String kode;
     private String nama;
+    private String alamat;
     private String tlp;
     private Boolean agen;
 
@@ -46,6 +47,14 @@ public class Pelanggan {
 
     public void setAgen(Boolean agen) {
         this.agen = agen;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
 }

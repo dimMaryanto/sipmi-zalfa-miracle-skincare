@@ -9,6 +9,6 @@ package app.repository;
  *
  * @author dimmaryanto
  */
-public interface PemasokRepository {
+public interface RepositoryPemasok {
     
 }

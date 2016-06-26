@@ -6,7 +6,6 @@
 package app.service;
 
 import app.entity.Kategori;
-import app.repository.KategoriRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import app.repository.RepositoryKategori;
 
 /**
  *
  * @author dimmaryanto
  */
-public class ServiceKategori implements KategoriRepository {
+public class ServiceKategori implements RepositoryKategori {
 
     private DataSource ds;
 
