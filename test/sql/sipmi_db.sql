@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  * Author:  dimmaryanto (Dimas Maryanto)
  * Created: Jun 26, 2016
@@ -83,11 +78,51 @@ CREATE TABLE IF NOT EXISTS m_pelanggan(
 ) ENGINE = InnoDB;
 
 INSERT INTO m_pelanggan (kode, nama, alamat, tlp, agen) VALUES
-('N003', ' kiki', ' bandung', '0987876765545', 0),
-('N001', ' Ulvia', 'Gerlong Bandung', '085221101909', 0),
-('N002', ' Febry', 'dago, bandung', '087678987123', 0),
+('N003', 'kiki', ' bandung', '0987876765545', 0),
+('N001', 'Ulvia', 'Gerlong Bandung', '085221101909', 0),
+('N002', 'Febry', 'dago, bandung', '087678987123', 0),
 ('P001', 'Meri', 'surabaya', '087987676565', 1),
 ('P002', 'Mila', ' sekeloa, bandung', '089987867542', 0),
 ('P003', 'Ica', ' Bandung', '089878765453', 1),
 ('P004', 'Diana', ' sadang serang bandung', '081656543234', 1);
 
+# TABEL PEMESANAN PEMBELIAN
+
+CREATE TABLE IF NOT EXISTS t_pemesanan_pembelian(
+    kode varchar(25) not null primary key,
+    tgl date not null,
+    kode_pemasok int not null
+)ENGINE= InnoDB;
+
+ALTER TABLE t_pemesanan_pembelian
+ADD CONSTRAINT fk_pemesanan_pembelian_pelanggan FOREIGN KEY (kode_pemasok)
+REFERENCES m_pemasok (kode) ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO t_pemesanan_pembelian (kode, tgl, kode_pemasok) VALUES
+('PB-20160601-2', '2016-06-01', 2),
+('PB-20160624-4', '2016-06-24', 2),
+('PB-20160625-3', '2016-06-25', 1),
+('PB-20160625-4', '2016-06-25', 1),
+('PB-20160625-5', '2016-06-25', 1),
+('PB-20160625-6', '2016-06-25', 1);
+
+# TABEL DETAIL PEMBELIAN
+
+CREATE TABLE IF NOT EXISTS t_pemesanan_pembelian_detail(
+    kode int not null primary key auto_increment,
+    kode_pemesanan varchar(25) not null,
+    kode_barang varchar(50) not null,
+    jumlah int not null default 0
+) ENGINE=InnoDB;
+
+ALTER TABLE t_pemesanan_pembelian_detail
+ADD CONSTRAINT fk_pemesanan_pembelian_detail_pemesanan 
+FOREIGN KEY (kode_pemesanan) 
+REFERENCES t_pemesanan_pembelian (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE t_pemesanan_pembelian_detail
+ADD CONSTRAINT fk_pemesanan_pembelian_detail_barang 
+FOREIGN KEY (kode_barang) 
+REFERENCES m_barang (kode)
+ON UPDATE CASCADE ON DELETE CASCADE;
