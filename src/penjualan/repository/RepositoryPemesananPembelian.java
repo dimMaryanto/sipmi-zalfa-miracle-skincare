@@ -7,19 +7,19 @@ package penjualan.repository;
 
 import java.sql.SQLException;
 import java.util.List;
-import penjualan.entity.PesananPembelian;
+import penjualan.entity.PemesananPembelian;
 
 /**
  *
  * @author dimmaryanto
  */
-public interface RepositoryPemesananPembelian extends BaseRepository<PesananPembelian, String> {
+public interface RepositoryPemesananPembelian extends BaseRepository<PemesananPembelian, String> {
 
     public String TABLE_NAME = "pesanan_pembelian";
     public String COLUMN_KODE = "kode";
     public String COLUMN_TGL = "tgl";
     public String COLUMN_PEMASOK = "kode_pemasok";
 
-    public void save(PesananPembelian pesan, List<PesananPembelian> listBarang) throws SQLException;
+    public void save(PemesananPembelian pesan, List<PemesananPembelian> listBarang) throws SQLException;
 
 }

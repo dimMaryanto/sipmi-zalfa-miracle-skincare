@@ -6,9 +6,10 @@ package penjualan.entity;
  */
 public class Barang {
 
-    private String kodeBarang;
+    private String kode;
     private String kodeKategori;
-    private String namaBarang;
+    private KategoriBarang kategori;
+    private String nama;
     private double harga;
     private int jumlah;
     private Boolean paket;
@@ -21,28 +22,34 @@ public class Barang {
         this.paket = paket;
     }
 
+    @Deprecated
     public String getKodeBarang() {
-        return kodeBarang;
+        return kode;
     }
 
+    @Deprecated
     public void setKodeBarang(String kodeBarang) {
-        this.kodeBarang = kodeBarang;
+        this.kode = kodeBarang;
     }
 
+    @Deprecated
     public String getKodeKategori() {
         return kodeKategori;
     }
 
+    @Deprecated
     public void setKodeKategori(String kodeKategori) {
         this.kodeKategori = kodeKategori;
     }
 
+    @Deprecated
     public String getNamaBarang() {
-        return namaBarang;
+        return nama;
     }
 
+    @Deprecated
     public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
+        this.nama = namaBarang;
     }
 
     public double getHarga() {
@@ -59,6 +66,30 @@ public class Barang {
 
     public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public KategoriBarang getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(KategoriBarang kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
 }

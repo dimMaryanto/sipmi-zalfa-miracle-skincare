@@ -11,19 +11,20 @@ package penjualan.entity;
  */
 public class Pelanggan {
 
-    private String id_pelanggan;
+    private String kode;
     private String nama;
     private String jp;
     private String alamat;
-    private int nope;
-    String no_pe = String.valueOf(nope);
+    String tlp;
 
+    @Deprecated
     public String getid_pelanggan() {
-        return id_pelanggan;
+        return kode;
     }
 
+    @Deprecated
     public void setid_pelanggan(String id_pelanggan) {
-        this.id_pelanggan = id_pelanggan;
+        this.kode = id_pelanggan;
     }
 
     public String getNama() {
@@ -34,27 +35,67 @@ public class Pelanggan {
         this.nama = nama;
     }
 
+    @Deprecated
     public String getjp() {
         return jp;
     }
 
+    @Deprecated
     public void setjp(String jp) {
         this.jp = jp;
     }
 
+    @Deprecated
     public String getalamat() {
         return alamat;
     }
 
+    @Deprecated
     public void setalamat(String alamat) {
         this.alamat = alamat;
     }
 
+    @Deprecated
     public String getnope() {
-        return no_pe;
+        return tlp;
     }
 
+    @Deprecated
     public void setnope(String nope) {
-        this.no_pe = nope;
+        this.tlp = nope;
     }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public String getJp() {
+        return jp;
+    }
+
+    public void setJp(String jp) {
+        this.jp = jp;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getTlp() {
+        return tlp;
+    }
+
+    public void setTlp(String tlp) {
+        this.tlp = tlp;
+    }
+    
+    
 }

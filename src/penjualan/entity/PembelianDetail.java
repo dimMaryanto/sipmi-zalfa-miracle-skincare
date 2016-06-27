@@ -9,28 +9,19 @@ package penjualan.entity;
  *
  * @author dimmaryanto
  */
-public class PemesananPembelianDetail {
+public class PembelianDetail {
 
-    private Integer id;
-    private PemesananPembelian pesan;
+    private Pembelian pembelian;
     private Barang barang;
     private Double harga;
     private Integer jumlah;
 
-    public Integer getId() {
-        return id;
+    public Pembelian getPembelian() {
+        return pembelian;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public PemesananPembelian getPesan() {
-        return pesan;
-    }
-
-    public void setPesan(PemesananPembelian pesan) {
-        this.pesan = pesan;
+    public void setPembelian(Pembelian pembelian) {
+        this.pembelian = pembelian;
     }
 
     public Barang getBarang() {

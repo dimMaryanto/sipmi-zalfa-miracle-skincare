@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import penjualan.entity.Pemasok;
-import penjualan.entity.PesananPembelian;
+import penjualan.entity.PemesananPembelian;
 import penjualan.repository.RepositoryPemesananPembelian;
 
 /**
@@ -29,18 +29,34 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
     }
 
     @Override
-    public PesananPembelian save(PesananPembelian value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PemesananPembelian save(PemesananPembelian pesan) throws SQLException {
+        StringBuilder sql = new StringBuilder("INSERT INTO ").append(TABLE_NAME);
+        sql.append(" (")
+                .append(COLUMN_KODE).append(", ")
+                .append(COLUMN_TGL).append(", ")
+                .append(COLUMN_PEMASOK).append(" )");
+        sql.append(" VALUES (?,?,?)");
+
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sql.toString());
+        ps.setString(1, pesan.getKode());
+        ps.setDate(2, pesan.getTgl());
+        ps.setString(3, pesan.getPemasok().getKode());
+        ps.executeUpdate();
+
+        ps.close();
+        connect.close();
+        return pesan;
     }
 
     @Override
     @Deprecated
-    public PesananPembelian update(PesananPembelian value) throws SQLException {
+    public PemesananPembelian update(PemesananPembelian value) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<PesananPembelian> findAll() throws SQLException {
+    public List<PemesananPembelian> findAll() throws SQLException {
         String sql = "select \n"
                 + "    p.kode as kode_pesanan, \n"
                 + "    p.tgl as tanggal_transaksi, \n"
@@ -50,20 +66,20 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
                 + "    s.notlp as tlp_pemasok\n"
                 + "from pesanan_pembelian p JOIN supplier s ON (p.kode_pemasok = s.kode_supplier)";
 
-        List<PesananPembelian> daftarPesanan = new ArrayList<>();
+        List<PemesananPembelian> daftarPesanan = new ArrayList<>();
         Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            PesananPembelian pesan = new PesananPembelian();
+            PemesananPembelian pesan = new PemesananPembelian();
             pesan.setKode(rs.getString(1));
             pesan.setTgl(rs.getDate(2));
 
             Pemasok p = new Pemasok();
-            p.setkode_supplier(rs.getString(3));
-            p.setnama(rs.getString(4));
-            p.setalamat(rs.getString(5));
-            p.setnope(rs.getString(6));
+            p.setKode(rs.getString(3));
+            p.setNama(rs.getString(4));
+            p.setAlamat(rs.getString(5));
+            p.setTlp(rs.getString(6));
             pesan.setPemasok(p);
 
             daftarPesanan.add(pesan);
@@ -76,7 +92,7 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
     }
 
     @Override
-    public PesananPembelian findOne(String id) throws SQLException {
+    public PemesananPembelian findOne(String id) throws SQLException {
         String sql = "select \n"
                 + "    p.kode as kode_pesanan, \n"
                 + "    p.tgl as tanggal_transaksi, \n"
@@ -86,22 +102,22 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
                 + "    s.notlp as tlp_pemasok\n"
                 + "from pesanan_pembelian p JOIN supplier s ON (p.kode_pemasok = s.kode_supplier)\n"
                 + "WHERE p.kode = ?";
-        List<PesananPembelian> daftarPesanan = new ArrayList<>();
+        List<PemesananPembelian> daftarPesanan = new ArrayList<>();
         Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareStatement(sql);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-        PesananPembelian pesan = null;
+        PemesananPembelian pesan = null;
         if (rs.next()) {
-            pesan = new PesananPembelian();
+            pesan = new PemesananPembelian();
             pesan.setKode(rs.getString(1));
             pesan.setTgl(rs.getDate(2));
 
             Pemasok p = new Pemasok();
-            p.setkode_supplier(rs.getString(3));
-            p.setnama(rs.getString(4));
-            p.setalamat(rs.getString(5));
-            p.setnope(rs.getString(6));
+            p.setKode(rs.getString(3));
+            p.setNama(rs.getString(4));
+            p.setAlamat(rs.getString(5));
+            p.setTlp(rs.getString(6));
             pesan.setPemasok(p);
 
             daftarPesanan.add(pesan);
@@ -119,7 +135,8 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
     }
 
     @Override
-    public void save(PesananPembelian pesan, List<PesananPembelian> listBarang) throws SQLException {
+    public void save(PemesananPembelian pesan, List<PemesananPembelian> listBarang) throws SQLException {
+        save(pesan);
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

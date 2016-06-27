@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author dimmaryanto
  */
-public class PesananPembelian {
+public class Pembelian {
 
     private String kode;
     private Date tgl;

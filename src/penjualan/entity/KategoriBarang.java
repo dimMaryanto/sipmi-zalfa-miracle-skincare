@@ -11,23 +11,43 @@ package penjualan.entity;
  */
 public class KategoriBarang {
 
-    private String kodeKategori;
+    private String kode;
     private String nama;
 
+    @Deprecated
     public String getid_kategori() {
-        return kodeKategori;
+        return kode;
     }
 
+    @Deprecated
     public void setid_kategori(String id_kateg) {
-        this.kodeKategori = id_kateg;
+        this.kode = id_kateg;
     }
 
+    @Deprecated
     public String getkategori() {
         return nama;
     }
 
+    @Deprecated
     public void setkategori(String kateg) {
         this.nama = kateg;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
 }
