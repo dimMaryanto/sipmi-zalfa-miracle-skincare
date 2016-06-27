@@ -20,7 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Pelanggan;
 import penjualan.service.pelangganImplement;
 import penjualan.repository.pelangganInterfc;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 
 /**
  *
@@ -173,7 +173,7 @@ public class LaporanPelanggan extends javax.swing.JFrame {
         String reportSource = null;
         String reportDest = null;
         try {
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             reportSource = System.getProperty("user.dir") + "/laporan/Laporan_Pelanggan.jrxml";
             reportDest = System.getProperty("user.dir") + "/laporan/Laporan_pelanggan.jasper";
 

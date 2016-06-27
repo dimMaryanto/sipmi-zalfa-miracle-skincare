@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 import penjualan.view.Laporan.LaporanBarang;
 import penjualan.view.master.BarangView;
 import penjualan.view.Laporan.LaporanPembelian;
@@ -40,7 +40,7 @@ public class FMenu extends javax.swing.JFrame {
     //-------privilege login-------//
 
     public void setUser() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select nama, jabatan from user where status='ON'");
         if (rs.next()) {
             user.setText(rs.getString("jabatan") + " : " + rs.getString("nama"));

@@ -14,6 +14,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import penjualan.entity.Pemasok;
 import penjualan.entity.PemesananPembelian;
+import penjualan.entity.PemesananPembelianDetail;
 import penjualan.repository.RepositoryPemesananPembelian;
 
 /**
@@ -135,9 +136,23 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
     }
 
     @Override
-    public void save(PemesananPembelian pesan, List<PemesananPembelian> listBarang) throws SQLException {
+    public void save(PemesananPembelian pesan, List<PemesananPembelianDetail> listBarang) throws SQLException {
         save(pesan);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String sql = "INSERT INTO pesanan_pembelian_detail (kode_pesanan, kode_barang, harga, jumlah) VALUES (?,?,?,?)";
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sql);
+        for (PemesananPembelianDetail d : listBarang) {
+            ps.setString(1, d.getPesan().getKode());
+            ps.setString(2, d.getBarang().getKode());
+            ps.setDouble(3, d.getHarga());
+            ps.setInt(4, d.getJumlah());
+            ps.addBatch();
+        }
+
+        ps.executeBatch();
+        ps.close();
+        connect.close();
     }
 
 }

@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 
 public class hapusbarang {
 
@@ -23,7 +23,7 @@ public class hapusbarang {
             System.out.print("Masukan Kode Barang Yang akan di hapus\t : ");
             String kode = input.nextLine();
 
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             String sql = "delete from barang where kode_barang = ?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, kode);

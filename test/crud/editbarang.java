@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 
 public class editbarang {
 
@@ -29,7 +29,7 @@ public class editbarang {
             System.out.print("Masukan Harga Barang Baru\t : ");
             String harga = input.nextLine();
 
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             String sql = "update barang set nama_barang = ?, harga = ?, kode_barang = ? where kode_barang = ?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, nama_barang);

@@ -17,7 +17,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Pemasok;
 import penjualan.service.supplierImplement;
 import penjualan.repository.supplierInterfc;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 
 /**
  *
@@ -170,7 +170,7 @@ public class LaporanPemasok extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/laporan/Laporan_Supplier.jasper"), null, c);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {

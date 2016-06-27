@@ -27,7 +27,7 @@ import penjualan.service.JKategoriImplement;
 import penjualan.service.barangImplement;
 import penjualan.repository.JKategoriInterfc;
 import penjualan.repository.barangInterfc;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 
 /**
  *
@@ -136,7 +136,7 @@ public class BarangView extends javax.swing.JFrame {
         String kode_barang = (String) brg.getKodeBarang();
         String kode_barangFix = kode_barang.substring(0, 1);
         try {
-            Statement ktB = koneksi.getConnection().createStatement();      //cek koneksi ke database dulu
+            Statement ktB = Koneksi.getConnection().createStatement();      //cek Koneksi ke database dulu
             ResultSet rsKBr = ktB.executeQuery("select kode_barang, id_kategori, nama_barang, harga, jumlah from barang where kode_barang = '" + kode_barangFix + "' ");     //PILIH DATA YANG SESUAI DARI DATABASE
 
         } catch (Exception e) {
@@ -609,13 +609,13 @@ public class BarangView extends javax.swing.JFrame {
         String harga = txtHarga.getText();
         String jumlah = txtJumlah.getText();
         try {
-            Statement kt = koneksi.getConnection().createStatement();
+            Statement kt = Koneksi.getConnection().createStatement();
             ResultSet rsKb = kt.executeQuery("select * from barang where kode_barang='" + idtipe + "'");
             if (rsKb.next()) {
                 JOptionPane.showMessageDialog(this, "Data barang dengan kode '" + idtipe + "' telah ada!");
             } else {
                 try {
-                    PreparedStatement st = (PreparedStatement) koneksi.getConnection().prepareStatement("insert into barang values(?,?,?,?,?)");
+                    PreparedStatement st = (PreparedStatement) Koneksi.getConnection().prepareStatement("insert into barang values(?,?,?,?,?)");
                     st.setString(1, idtipe);
                     st.setString(2, idKategoriFix);
                     st.setString(3, namaBarang);
@@ -657,7 +657,7 @@ public class BarangView extends javax.swing.JFrame {
         String harga = txtHarga.getText();
         String jumlah = txtJumlah.getText();
         try {
-            PreparedStatement st = (PreparedStatement) koneksi.getConnection().
+            PreparedStatement st = (PreparedStatement) Koneksi.getConnection().
                     prepareStatement("update barang set id_kategori=?, nama_barang=?, harga=?, jumlah=? where kode_barang=?");
             st.setString(1, idKategoriFix);
             st.setString(2, namaBarang);

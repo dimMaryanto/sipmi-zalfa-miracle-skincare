@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -160,7 +160,7 @@ public final class PembelianView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pilih Id Supplier terlebih dahulu");
         } else {
             try {
-                PreparedStatement st = koneksi.getConnection().prepareStatement("INSERT into pembelian values(?,?,?)");
+                PreparedStatement st = Koneksi.getConnection().prepareStatement("INSERT into pembelian values(?,?,?)");
                 st.setString(1, noStruk);
                 st.setString(2, tglBeli);
                 st.setString(3, idSupplierFix);
@@ -186,14 +186,14 @@ public final class PembelianView extends javax.swing.JFrame {
                 int hargaJual = Integer.valueOf(String.valueOf(model.getValueAt(i, 2)));
 
                 try {
-                    PreparedStatement st1 = koneksi.getConnection().prepareStatement("INSERT INTO detail_beli value(?,?,?,?)");
+                    PreparedStatement st1 = Koneksi.getConnection().prepareStatement("INSERT INTO detail_beli value(?,?,?,?)");
                     st1.setString(1, noStruk);
                     st1.setString(2, kodeBarang);
                     st1.setInt(3, hargaJual);
                     st1.setInt(4, jmlBeli);
                     st1.executeUpdate();
 
-                    PreparedStatement st2 = koneksi.getConnection().prepareStatement("Update barang set jumlah=jumlah+'" + jmlBeli + "' where kode_barang='" + kodeBarang + "'");
+                    PreparedStatement st2 = Koneksi.getConnection().prepareStatement("Update barang set jumlah=jumlah+'" + jmlBeli + "' where kode_barang='" + kodeBarang + "'");
                     st2.executeUpdate();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -590,11 +590,11 @@ public final class PembelianView extends javax.swing.JFrame {
         String kode = (String) nm_barang.getSelectedItem();
         String kodeFix = kode.substring(0, 4);
         try {
-//            Statement ktB=koneksi.getConnection().createStatement();
+//            Statement ktB=Koneksi.getConnection().createStatement();
 //            ResultSet rsKBr= ktB.executeQuery("SELECT q.kode_barang, q.id_kategori, q.nama_barang, q.harga, q.jum - coalesce(sum(dj.jumlah), 0) as jumlah\n" +
 //                "FROM q left join detail_jual dj on q.kode_barang = dj.kode_barang where q.kode_barang='"+kodeFix+"' group by q.kode_barang");
 //            
-            Statement ktB = koneksi.getConnection().createStatement();
+            Statement ktB = Koneksi.getConnection().createStatement();
             ResultSet rsKBr = ktB.executeQuery("SELECT * FROM barang where kode_barang='" + kodeFix + "'");
 
             while (rsKBr.next()) {
@@ -669,7 +669,7 @@ public final class PembelianView extends javax.swing.JFrame {
         String kode = (String) nama_supplier.getSelectedItem();
         String kodeFix = kode.substring(0, 1);
         try {
-            Statement ktB = koneksi.getConnection().createStatement();
+            Statement ktB = Koneksi.getConnection().createStatement();
             ResultSet rsKBr = ktB.executeQuery("SELECT alamat,notlp from supplier where kode_supplier='" + kodeFix + "'");
             while (rsKBr.next()) {
                 alamat.setText(rsKBr.getString("alamat"));
@@ -686,7 +686,7 @@ public final class PembelianView extends javax.swing.JFrame {
         String kode = (String) nm_barang.getSelectedItem();
         String kodeFix = kode.substring(0, 4);
         try {
-            Statement ktB = koneksi.getConnection().createStatement();
+            Statement ktB = Koneksi.getConnection().createStatement();
             ResultSet rsKBr = ktB.executeQuery("SELECT * from a where kode_barang='" + kodeFix + "' group by kode_barang");
             while (rsKBr.next()) {
 

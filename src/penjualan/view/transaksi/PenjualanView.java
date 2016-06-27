@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -169,7 +169,7 @@ public final class PenjualanView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pilih Id Pelanggan terlebih dahulu");
         } else {
             try {
-                PreparedStatement st = koneksi.getConnection().prepareStatement("INSERT into penjualan values(?,?,?)");
+                PreparedStatement st = Koneksi.getConnection().prepareStatement("INSERT into penjualan values(?,?,?)");
                 st.setString(1, noFaktur);
                 st.setString(2, tglJual);
                 st.setString(3, idPelangganFix);
@@ -197,7 +197,7 @@ public final class PenjualanView extends javax.swing.JFrame {
                 int hargaJual = Integer.valueOf(String.valueOf(Model.getValueAt(i, 2)));
 
                 try {
-                    PreparedStatement st1 = koneksi.getConnection().prepareStatement("INSERT INTO detail_jual value(?,?,?,?,?)");
+                    PreparedStatement st1 = Koneksi.getConnection().prepareStatement("INSERT INTO detail_jual value(?,?,?,?,?)");
                     st1.setString(1, noFaktur);
                     st1.setString(2, kodeBarang);
                     st1.setInt(3, hargaJual);
@@ -205,7 +205,7 @@ public final class PenjualanView extends javax.swing.JFrame {
                     st1.setInt(5, jmlBeli);
                     st1.executeUpdate();
 
-                    PreparedStatement st2 = koneksi.getConnection().prepareStatement("Update barang set jumlah=jumlah-'" + jmlBeli + "'");
+                    PreparedStatement st2 = Koneksi.getConnection().prepareStatement("Update barang set jumlah=jumlah-'" + jmlBeli + "'");
                     st2.executeUpdate();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -770,7 +770,7 @@ public final class PenjualanView extends javax.swing.JFrame {
         String kode = (String) nama_pelanggan.getSelectedItem();
         String kodeFix = kode.substring(0, 4);
         try {
-            Statement ktB = koneksi.getConnection().createStatement();
+            Statement ktB = Koneksi.getConnection().createStatement();
             ResultSet rsKBr = ktB.executeQuery("SELECT jp,notlp from pelanggan where id_pelanggan='" + kodeFix + "'");
             while (rsKBr.next()) {
                 pelanggan.setText(rsKBr.getString("jp"));
@@ -841,7 +841,7 @@ public final class PenjualanView extends javax.swing.JFrame {
         String kode = (String) nama_barang.getSelectedItem();
         String kodeFix = kode.substring(0, 4);
         try {
-            Statement ktB = koneksi.getConnection().createStatement();
+            Statement ktB = Koneksi.getConnection().createStatement();
             ResultSet rsKBr = ktB.executeQuery("SELECT * FROM barang where kode_barang='" + kodeFix + "'");
 
 //            ResultSet rsKBr= ktB.executeQuery("SELECT q.kode_barang, q.id_kategori, q.nama_barang, q.harga, q.jum - coalesce(sum(dj.jumlah), 0) as jumlah\n" +

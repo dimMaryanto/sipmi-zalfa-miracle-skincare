@@ -1,6 +1,6 @@
 package penjualan.service;
 
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,7 +14,7 @@ public class TransaksiPembelianImplement {
 
     public int UrutanDb() throws SQLException {
 
-        Statement St = koneksi.getConnection().createStatement();
+        Statement St = Koneksi.getConnection().createStatement();
 
         int Jml = 0;
 
@@ -47,7 +47,7 @@ public class TransaksiPembelianImplement {
 
         try {
 
-            Statement Kt = koneksi.getConnection().createStatement();
+            Statement Kt = Koneksi.getConnection().createStatement();
 
             ResultSet RsKb = Kt.executeQuery("SELECT kode_barang, nama_barang FROM barang");
 
@@ -73,7 +73,7 @@ public class TransaksiPembelianImplement {
 
         try {
 
-            Statement Kt = koneksi.getConnection().createStatement();
+            Statement Kt = Koneksi.getConnection().createStatement();
 
             ResultSet RsKb = Kt.executeQuery("SELECT kode_supplier, nama_supplier FROM supplier");
 

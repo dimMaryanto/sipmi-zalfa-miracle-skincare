@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
 
-public class koneksi {
+public class Koneksi {
 
     private static Connection conn;
 
@@ -27,7 +27,7 @@ public class koneksi {
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sipmi", "root", "admin");
             } catch (SQLException ex) {
-                Logger.getLogger(koneksi.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return conn;

@@ -1,5 +1,7 @@
 package penjualan.entity;
 
+import penjualan.config.StringConverter;
+
 /**
  *
  * @author Lani
@@ -54,6 +56,10 @@ public class Barang {
 
     public double getHarga() {
         return harga;
+    }
+
+    public String getHargaAsCurrency() {
+        return StringConverter.getCurrency(harga);
     }
 
     public void setHarga(double harga) {

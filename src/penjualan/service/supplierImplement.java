@@ -5,7 +5,7 @@
  */
 package penjualan.service;
 
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +21,9 @@ import penjualan.repository.supplierInterfc;
  */
 public class supplierImplement implements supplierInterfc {
 
+    @Override
     public List<Pemasok> getAll() throws SQLException {
-        Statement st = koneksi.getConnection().createStatement();
+        Statement st = Koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from supplier");
         List<Pemasok> list = new ArrayList<Pemasok>();
         while (rs.next()) {
@@ -38,7 +39,7 @@ public class supplierImplement implements supplierInterfc {
 
 //---untuk insert ke database---//
     public Pemasok insert(Pemasok o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("insert into supplier values (?,?,?,?)");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("insert into supplier values (?,?,?,?)");
         st.setString(1, o.getkode_supplier());
         st.setString(2, o.getnama_supplier());
         st.setString(3, o.getalamat());
@@ -49,7 +50,7 @@ public class supplierImplement implements supplierInterfc {
 //--untuk update ke database--//
 
     public void update(Pemasok o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("update supplier set"
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("update supplier set"
                 + " nama_supplier=?,alamat=?,notlp=? where kode_supplier=?");
         st.setString(1, o.getnama_supplier());
         st.setString(2, o.getalamat());
@@ -60,7 +61,7 @@ public class supplierImplement implements supplierInterfc {
 //--untuk delete data berdasarkan kode_barang--//
 
     public void delete(String kode_supplier) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("delete from supplier where kode_supplier=?");
+        PreparedStatement st = Koneksi.getConnection().prepareStatement("delete from supplier where kode_supplier=?");
         st.setString(1, kode_supplier);
         st.executeUpdate();
     }

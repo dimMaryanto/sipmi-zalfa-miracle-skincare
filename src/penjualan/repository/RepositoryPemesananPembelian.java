@@ -8,6 +8,7 @@ package penjualan.repository;
 import java.sql.SQLException;
 import java.util.List;
 import penjualan.entity.PemesananPembelian;
+import penjualan.entity.PemesananPembelianDetail;
 
 /**
  *
@@ -20,6 +21,6 @@ public interface RepositoryPemesananPembelian extends BaseRepository<PemesananPe
     public String COLUMN_TGL = "tgl";
     public String COLUMN_PEMASOK = "kode_pemasok";
 
-    public void save(PemesananPembelian pesan, List<PemesananPembelian> listBarang) throws SQLException;
+    public void save(PemesananPembelian pesan, List<PemesananPembelianDetail> listBarang) throws SQLException;
 
 }

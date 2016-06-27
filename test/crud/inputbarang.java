@@ -13,8 +13,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import penjualan.config.koneksi;
-import penjualan.config.koneksi;
+import penjualan.config.Koneksi;
+import penjualan.config.Koneksi;
 
 public class inputbarang {
 
@@ -29,7 +29,7 @@ public class inputbarang {
             System.out.print("Masukan Harga Barang \t : ");
             String harga = input.nextLine();
 
-            Connection c = koneksi.getConnection();
+            Connection c = Koneksi.getConnection();
             String sql = "Insert into barang values (?,?,?)";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, kode_barang);
