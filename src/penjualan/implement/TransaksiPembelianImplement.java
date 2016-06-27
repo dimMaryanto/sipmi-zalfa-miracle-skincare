@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import penjualan.view.transaksiPembelianView;
+import penjualan.view.transaksi.PembelianView;
 
 /**
  *

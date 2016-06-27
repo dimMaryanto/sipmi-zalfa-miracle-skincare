@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.view;
+package penjualan.view.transaksi;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,14 +23,14 @@ import java.sql.PreparedStatement;
  *
  * @author Lani
  */
-public final class transaksiPembelianView extends javax.swing.JFrame {
+public final class PembelianView extends javax.swing.JFrame {
 
     private DefaultTableModel model;
 
     /**
      * Creates new form transaksiPembelianView
      */
-    public transaksiPembelianView() {
+    public PembelianView() {
         try {
             initComponents();
             model = new DefaultTableModel();
@@ -46,7 +46,7 @@ public final class transaksiPembelianView extends javax.swing.JFrame {
             SetIdSupplier();
             btransaksi.setEnabled(false);
         } catch (SQLException ex) {
-            Logger.getLogger(transaksiPembelianView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -263,7 +263,7 @@ public final class transaksiPembelianView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Stencil Std", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel3.setText("TRANSAKSI PEMBELIAN");
+        jLabel3.setText("Transaksi Pembelian");
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -659,7 +659,7 @@ public final class transaksiPembelianView extends javax.swing.JFrame {
             bhapus.setEnabled(true);
             btransaksi.setEnabled(true);
         } catch (SQLException ex) {
-            Logger.getLogger(transaksiView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }//GEN-LAST:event_btransaksiActionPerformed
@@ -715,14 +715,15 @@ public final class transaksiPembelianView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(transaksiPembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(transaksiPembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(transaksiPembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(transaksiPembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PembelianView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

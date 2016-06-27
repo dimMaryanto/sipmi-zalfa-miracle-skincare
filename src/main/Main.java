@@ -5,7 +5,7 @@
  */
 package main;
 
-import penjualan.view.login;
+import penjualan.view.LoginView;
 
 /**
  *
@@ -14,7 +14,7 @@ import penjualan.view.login;
 public class Main {
 
     public static void main(String[] args) {
-        login loginform = new login();
+        LoginView loginform = new LoginView();
         loginform.setVisible(true);
         loginform.setDefaultCloseOperation(FMenu.EXIT_ON_CLOSE);
     }

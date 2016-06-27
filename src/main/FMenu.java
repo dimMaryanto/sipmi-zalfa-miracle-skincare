@@ -13,16 +13,16 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import penjualan.koneksi.koneksi;
 import penjualan.view.Laporan.LaporanBarang;
-import penjualan.view.BarangView;
-import penjualan.view.Laporan.laporanBeli;
-import penjualan.view.Laporan.laporanJual;
-import penjualan.view.login;
+import penjualan.view.master.BarangView;
+import penjualan.view.Laporan.LaporanPembelian;
+import penjualan.view.Laporan.LaporanPenjualan;
+import penjualan.view.LoginView;
 import penjualan.view.Laporan.LaporanPelanggan;
-import penjualan.view.pelangganView;
+import penjualan.view.master.PelangganView;
 import penjualan.view.Laporan.LaporanPemasok;
-import penjualan.view.supplierView;
-import penjualan.view.transaksiPembelianView;
-import penjualan.view.transaksiView;
+import penjualan.view.master.PemasokView;
+import penjualan.view.transaksi.PembelianView;
+import penjualan.view.transaksi.PenjualanView;
 
 /**
  *
@@ -340,7 +340,7 @@ public class FMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MITransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MITransaksiActionPerformed
-        laporanJual tampilLaporan = new laporanJual();
+        LaporanPenjualan tampilLaporan = new LaporanPenjualan();
         tampilLaporan.setLocationRelativeTo(null);
         tampilLaporan.setVisible(true);
     }//GEN-LAST:event_MITransaksiActionPerformed
@@ -363,7 +363,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MIPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIPelangganActionPerformed
         // TODO add your handling code here:
-        pelangganView tampilPelanggan = new pelangganView();
+        PelangganView tampilPelanggan = new PelangganView();
         tampilPelanggan.setLocationRelativeTo(null);
         tampilPelanggan.setVisible(true);
     }//GEN-LAST:event_MIPelangganActionPerformed
@@ -374,7 +374,7 @@ public class FMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MTransaksiActionPerformed
 
     private void MIPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIPenjualanActionPerformed
-        transaksiView TampilTransaksi = new transaksiView();
+        PenjualanView TampilTransaksi = new PenjualanView();
         java.awt.Dimension screenRes = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         TampilTransaksi.setLocation((screenRes.width / 2) - (TampilTransaksi.getWidth() / 2), (screenRes.height / 2) - (TampilTransaksi.getHeight() / 2));
         TampilTransaksi.setVisible(true);
@@ -382,7 +382,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MIPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIPembelianActionPerformed
 
-        transaksiPembelianView munculTransaksi = new transaksiPembelianView();
+        PembelianView munculTransaksi = new PembelianView();
         munculTransaksi.setLocationRelativeTo(null);
         munculTransaksi.setVisible(true);
 
@@ -390,7 +390,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MIPemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIPemasokActionPerformed
         // TODO add your handling code here:
-        supplierView tampilSupplier = new supplierView();
+        PemasokView tampilSupplier = new PemasokView();
         tampilSupplier.setLocationRelativeTo(null);
         tampilSupplier.setVisible(true);
     }//GEN-LAST:event_MIPemasokActionPerformed
@@ -412,7 +412,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MIBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIBeliActionPerformed
         // TODO add your handling code here:
-        laporanBeli tampilLaporan = new laporanBeli();
+        LaporanPembelian tampilLaporan = new LaporanPembelian();
         tampilLaporan.setLocationRelativeTo(null);
         tampilLaporan.setVisible(true);
     }//GEN-LAST:event_MIBeliActionPerformed
@@ -440,21 +440,21 @@ public class FMenu extends javax.swing.JFrame {
 
     private void iconLapJualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconLapJualActionPerformed
         // menampilkan form transaksi lap penjualan dengan icon:
-        laporanJual tampilLapJual = new laporanJual();
+        LaporanPenjualan tampilLapJual = new LaporanPenjualan();
         tampilLapJual.setLocationRelativeTo(null);
         tampilLapJual.setVisible(true);
     }//GEN-LAST:event_iconLapJualActionPerformed
 
     private void iconPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconPenjualanActionPerformed
         // menampilkan form transaksi penjualan dengan icon:
-        transaksiView tampilPenjualan = new transaksiView();
+        PenjualanView tampilPenjualan = new PenjualanView();
         tampilPenjualan.setLocationRelativeTo(null);
         tampilPenjualan.setVisible(true);
     }//GEN-LAST:event_iconPenjualanActionPerformed
 
     private void fdaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fdaftarActionPerformed
         // menampilkan form transaksi penjualan dengan icon:
-        pelangganView tampilPelanggan = new pelangganView();
+        PelangganView tampilPelanggan = new PelangganView();
         tampilPelanggan.setLocationRelativeTo(null);
         tampilPelanggan.setVisible(true);
     }//GEN-LAST:event_fdaftarActionPerformed

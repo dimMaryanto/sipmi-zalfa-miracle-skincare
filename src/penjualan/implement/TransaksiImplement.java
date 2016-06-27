@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import penjualan.view.transaksiView;
+import penjualan.view.transaksi.PenjualanView;
 //import penjualan.interfc.TransaksiInterfc;
-
 public class TransaksiImplement {
 
     public int UrutanDb() throws SQLException {

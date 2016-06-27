@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.view;
+package penjualan.view.master;
 
 import penjualan.entity.Supplier;
 import penjualan.implement.supplierImplement;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lani
  */
-public final class supplierView extends javax.swing.JFrame {
+public final class PemasokView extends javax.swing.JFrame {
 
     List<Supplier> record = new ArrayList<Supplier>();
     supplierInterfc spSuppler;
@@ -31,7 +31,7 @@ public final class supplierView extends javax.swing.JFrame {
     /**
      * Creates new form supplierView
      */
-    public supplierView() {
+    public PemasokView() {
         initComponents();
         spSuppler = new supplierImplement();
         tabelSupplier.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -53,7 +53,7 @@ public final class supplierView extends javax.swing.JFrame {
             record = spSuppler.getAll();
 
         } catch (SQLException ex) {
-            Logger.getLogger(pelangganView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PelangganView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //--untuk mengaupdate data yang ada di jTable, agar selalu muncul data yang baru--//
@@ -329,7 +329,7 @@ public final class supplierView extends javax.swing.JFrame {
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "Data Berhasil diubah");
         } catch (SQLException ex) {
-            Logger.getLogger(supplierView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PemasokView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ubahActionPerformed
 
@@ -342,7 +342,7 @@ public final class supplierView extends javax.swing.JFrame {
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "Data Berhasil dihapus");
         } catch (SQLException ex) {
-            Logger.getLogger(supplierView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PemasokView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_hapusActionPerformed
 
@@ -358,7 +358,7 @@ public final class supplierView extends javax.swing.JFrame {
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "data tersimpan");
         } catch (SQLException ex) {
-            Logger.getLogger(pelangganView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PelangganView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tambahActionPerformed
 
@@ -379,20 +379,21 @@ public final class supplierView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(supplierView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PemasokView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(supplierView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PemasokView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(supplierView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PemasokView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(supplierView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PemasokView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new supplierView().setVisible(true);
+                new PemasokView().setVisible(true);
             }
         });
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.view;
+package penjualan.view.transaksi;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Lani
  */
-public final class transaksiView extends javax.swing.JFrame {
+public final class PenjualanView extends javax.swing.JFrame {
 
     int row;
 
@@ -34,7 +34,7 @@ public final class transaksiView extends javax.swing.JFrame {
     /**
      * Creates new form transaksiView
      */
-    public transaksiView() {
+    public PenjualanView() {
         try {
             initComponents();
 
@@ -54,7 +54,7 @@ public final class transaksiView extends javax.swing.JFrame {
             SetKodeBarang();
             bTambah.setEnabled(false);
         } catch (SQLException ex) {
-            Logger.getLogger(transaksiView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -409,7 +409,7 @@ public final class transaksiView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Stencil Std", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText("TRANSAKSI PENJUALAN");
+        jLabel1.setText("Transaksi Penjualan");
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -440,10 +440,10 @@ public final class transaksiView extends javax.swing.JFrame {
 
         harga.setEditable(false);
         harga.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 hargaInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -747,7 +747,7 @@ public final class transaksiView extends javax.swing.JFrame {
             bHapus.setEnabled(true);
             bSimpanTransaksi.setEnabled(true);
         } catch (SQLException ex) {
-            Logger.getLogger(transaksiView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }//GEN-LAST:event_bTambahActionPerformed
@@ -887,14 +887,15 @@ public final class transaksiView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(transaksiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PenjualanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(transaksiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PenjualanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(transaksiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PenjualanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(transaksiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PenjualanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
