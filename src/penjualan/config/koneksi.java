@@ -8,11 +8,14 @@ package penjualan.config;
  *
  * @author Lani
  */
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sql.DataSource;
 
 public class koneksi {
 
@@ -28,6 +31,14 @@ public class koneksi {
             }
         }
         return conn;
+    }
+    
+    public static DataSource getDataSource(){
+        MysqlDataSource ds = new MysqlConnectionPoolDataSource();
+        ds.setUser("root");
+        ds.setPassword("admin");
+        ds.setDatabaseName("sipmi");
+        return ds;
     }
 
 }

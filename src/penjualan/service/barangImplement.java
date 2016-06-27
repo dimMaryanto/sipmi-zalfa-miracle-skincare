@@ -50,6 +50,7 @@ public class barangImplement implements barangInterfc {
             brg.setNamaBarang(rs.getString("nama_barang"));
             brg.setHarga(rs.getInt("harga"));
             brg.setJumlah(rs.getInt("jumlah"));
+            brg.setPaket(rs.getBoolean("paket"));
             list.add(brg);
         }
         return list;
@@ -59,12 +60,13 @@ public class barangImplement implements barangInterfc {
 //---untuk insert ke database---//
     @Override
     public Barang insert(Barang o) throws SQLException {
-        PreparedStatement st = koneksi.getConnection().prepareStatement("insert into barang values (?,?,?,?,?)");
+        PreparedStatement st = koneksi.getConnection().prepareStatement("insert into barang values (?,?,?,?,?,?)");
         st.setString(1, o.getKodeBarang());
         st.setString(2, o.getKodeKategori());
         st.setString(3, o.getNamaBarang());
         st.setDouble(4, o.getHarga());
         st.setInt(5, o.getJumlah());
+        st.setBoolean(6, o.getPaket());
         st.executeUpdate();
         return o;
     }

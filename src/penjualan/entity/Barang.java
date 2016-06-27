@@ -11,6 +11,15 @@ public class Barang {
     private String namaBarang;
     private double harga;
     private int jumlah;
+    private Boolean paket;
+
+    public Boolean getPaket() {
+        return paket;
+    }
+
+    public void setPaket(Boolean paket) {
+        this.paket = paket;
+    }
 
     public String getKodeBarang() {
         return kodeBarang;

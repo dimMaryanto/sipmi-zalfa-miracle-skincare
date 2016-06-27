@@ -6,26 +6,26 @@ package penjualan.entity;
  */
 public class Pemasok {
 
-    private String kode_supplier;
-    private String nama_supplier;
+    private String kode;
+    private String nama;
     private String alamat;
     private int nope;
     String no_pe = String.valueOf(nope);
 
     public String getkode_supplier() {
-        return kode_supplier;
+        return kode;
     }
 
     public void setkode_supplier(String kode_supplier) {
-        this.kode_supplier = kode_supplier;
+        this.kode = kode_supplier;
     }
 
     public String getnama_supplier() {
-        return nama_supplier;
+        return nama;
     }
 
     public void setnama(String nama_supplier) {
-        this.nama_supplier = nama_supplier;
+        this.nama = nama_supplier;
     }
 
     public String getalamat() {
