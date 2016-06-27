@@ -6,6 +6,8 @@
 package penjualan.config;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
@@ -17,6 +19,11 @@ public class StringConverter {
     public static String getCurrency(Number number) {
         NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
         return format.format(number);
+    }
+
+    public static String getDateTime(LocalDate date) {
+        DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.getDefault());
+        return dateFormater.format(date);
     }
 
 }

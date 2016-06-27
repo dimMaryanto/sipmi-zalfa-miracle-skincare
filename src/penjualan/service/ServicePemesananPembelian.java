@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import penjualan.entity.Barang;
+import penjualan.entity.KategoriBarang;
 import penjualan.entity.Pemasok;
 import penjualan.entity.PemesananPembelian;
 import penjualan.entity.PemesananPembelianDetail;
@@ -153,6 +155,65 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
         ps.executeBatch();
         ps.close();
         connect.close();
+    }
+
+    @Override
+    public List<PemesananPembelianDetail> findByPemesananPembelianKode(String kode) throws SQLException {
+        String sql = "select\n"
+                + "    b.kode as kode_pesan,\n"
+                + "    b.tgl as tgl_pesan,\n"
+                + "    bd.id as kode_pesan_barang, \n"
+                + "    bd.harga as harga_pesan_barang, \n"
+                + "    bd.jumlah as jumlah_pesan_barang,\n"
+                + "    brg.kode_barang as kode_barang,\n"
+                + "    brg.nama_barang as nama_barang, \n"
+                + "    brg.harga as harga_barang, \n"
+                + "    brg.jumlah as jumlah_barang,\n"
+                + "    brg.paket as paket, \n"
+                + "    k.id_kategori as kode_kategori_barang,\n"
+                + "    k.kategori as nama_kategori_barang\n"
+                + "from\n"
+                + "    pesanan_pembelian b JOIN pesanan_pembelian_detail bd ON (b.kode = bd.kode_pesanan)\n"
+                + "    JOIN barang brg ON (brg.kode_barang = bd.kode_barang)\n"
+                + "    JOIN kategori_brg k ON (brg.id_kategori = k.id_kategori)\n"
+                + "WHERE b.kode = ?";
+
+        List<PemesananPembelianDetail> list = new ArrayList<>();
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sql);
+        ps.setString(1, kode);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            PemesananPembelian b = new PemesananPembelian();
+            b.setKode(rs.getString("kode_pesan"));
+            b.setTgl(rs.getDate("tgl_pesan"));
+
+            PemesananPembelianDetail bd = new PemesananPembelianDetail();
+            bd.setId(rs.getInt("kode_pesan_barang"));
+            bd.setHarga(rs.getDouble("harga_pesan_barang"));
+            bd.setJumlah(rs.getInt("jumlah_pesan_barang"));
+
+            Barang brg = new Barang();
+            brg.setKode(rs.getString("kode_barang"));
+            brg.setNama(rs.getString("nama_barang"));
+            brg.setHarga(rs.getDouble("harga_barang"));
+            brg.setJumlah(rs.getInt("jumlah_barang"));
+            brg.setPaket(rs.getBoolean("paket"));
+
+            KategoriBarang k = new KategoriBarang();
+            k.setKode(rs.getString("kode_kategori_barang"));
+            k.setNama(rs.getString("nama_kategori_barang"));
+            brg.setKategori(k);
+            bd.setBarang(brg);
+            bd.setPesan(b);
+            
+            list.add(bd);
+        }
+        
+        ps.close();
+        rs.close();
+        connect.close();
+        return list;
     }
 
 }

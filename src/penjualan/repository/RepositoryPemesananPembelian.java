@@ -23,4 +23,6 @@ public interface RepositoryPemesananPembelian extends BaseRepository<PemesananPe
 
     public void save(PemesananPembelian pesan, List<PemesananPembelianDetail> listBarang) throws SQLException;
 
+    public List<PemesananPembelianDetail> findByPemesananPembelianKode(String kode) throws SQLException;
+
 }
