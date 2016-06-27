@@ -5,7 +5,7 @@
  */
 package penjualan.view.master;
 
-import penjualan.interfc.pelangganInterfc;
+import penjualan.repository.pelangganInterfc;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import penjualan.entity.Pelanggan;
-import penjualan.implement.pelangganImplement;
+import penjualan.service.pelangganImplement;
 
 /**
  *

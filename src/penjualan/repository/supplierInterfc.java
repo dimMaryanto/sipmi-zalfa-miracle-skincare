@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.interfc;
+package penjualan.repository;
 
-import penjualan.entity.Barang;
+import penjualan.entity.Supplier;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,14 +13,14 @@ import java.util.List;
  *
  * @author Lani
  */
-public interface barangInterfc {
+public interface supplierInterfc {
 
     List getAll() throws SQLException;
 
-    Barang insert(Barang o) throws SQLException;
+    Supplier insert(Supplier o) throws SQLException;
 
-    void update(Barang o) throws SQLException;
+    void update(Supplier o) throws SQLException;
 
-    void delete(String kodeBarang) throws SQLException;
+    void delete(String kode_supplier) throws SQLException;
 
 }

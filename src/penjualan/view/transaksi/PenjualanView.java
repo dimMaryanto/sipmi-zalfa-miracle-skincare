@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import penjualan.koneksi.koneksi;
+import penjualan.config.koneksi;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import penjualan.implement.TransaksiImplement;
+import penjualan.service.TransaksiImplement;
 import java.sql.PreparedStatement;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -570,6 +570,11 @@ public final class PenjualanView extends javax.swing.JFrame {
         jLabel7.setText("Total Pembayaran");
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/cetak1.jpg"))); // NOI18N
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Stencil Std", 1, 12)); // NOI18N
         jLabel9.setText("CETAK NOTA");
@@ -847,21 +852,13 @@ public final class PenjualanView extends javax.swing.JFrame {
 
                 long d;
                 double disk;
-
                 disk = Double.parseDouble(harga.getText());
-
                 if (pelanggan.getText().equals("Agen")) {
-
                     d = (long) ((disk * 15) / 100);
-
                     String ds = String.valueOf(d);
-
                     diskon.setText(ds);
-
                 } else if (pelanggan.getText().equals("NoN Agen")) {
-
                     diskon.setText("0");
-
                 }
 
             }
@@ -869,6 +866,10 @@ public final class PenjualanView extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_nama_barangItemStateChanged
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments

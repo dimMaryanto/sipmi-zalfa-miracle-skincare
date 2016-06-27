@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.implement;
+package penjualan.service;
 
 import penjualan.entity.Pelanggan;
-import penjualan.koneksi.koneksi;
+import penjualan.config.koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import penjualan.entity.Pelanggan;
-import penjualan.interfc.pelangganInterfc;
+import penjualan.repository.pelangganInterfc;
 
 /**
  *

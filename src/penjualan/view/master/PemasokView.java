@@ -6,8 +6,8 @@
 package penjualan.view.master;
 
 import penjualan.entity.Supplier;
-import penjualan.implement.supplierImplement;
-import penjualan.interfc.supplierInterfc;
+import penjualan.service.supplierImplement;
+import penjualan.repository.supplierInterfc;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

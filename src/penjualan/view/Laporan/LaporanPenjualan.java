@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JRException;
-import penjualan.koneksi.koneksi;
+import penjualan.config.koneksi;
 
 /**
  *

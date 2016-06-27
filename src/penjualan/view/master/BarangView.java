@@ -25,11 +25,11 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import penjualan.entity.JKategori;
 import penjualan.entity.Barang;
-import penjualan.implement.JKategoriImplement;
-import penjualan.implement.barangImplement;
-import penjualan.interfc.JKategoriInterfc;
-import penjualan.interfc.barangInterfc;
-import penjualan.koneksi.koneksi;
+import penjualan.service.JKategoriImplement;
+import penjualan.service.barangImplement;
+import penjualan.repository.JKategoriInterfc;
+import penjualan.repository.barangInterfc;
+import penjualan.config.koneksi;
 
 /**
  *

@@ -8,8 +8,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import penjualan.koneksi.koneksi;
-import main.FMenu;
+import penjualan.config.koneksi;
 import penjualan.entity.User;
 
 /**

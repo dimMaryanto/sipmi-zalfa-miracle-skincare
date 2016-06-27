@@ -1,4 +1,4 @@
-package penjualan.interfc;
+package penjualan.repository;
 
 import penjualan.entity.JKategori;
 import java.sql.SQLException;

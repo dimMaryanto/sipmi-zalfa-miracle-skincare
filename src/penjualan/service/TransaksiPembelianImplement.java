@@ -1,12 +1,10 @@
-package penjualan.implement;
+package penjualan.service;
 
-import penjualan.koneksi.koneksi;
-import java.sql.PreparedStatement;
+import penjualan.config.koneksi;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import penjualan.view.transaksi.PembelianView;
 
 /**
  *

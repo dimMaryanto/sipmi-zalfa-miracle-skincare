@@ -18,9 +18,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import penjualan.entity.Barang;
-import penjualan.implement.barangImplement;
-import penjualan.interfc.barangInterfc;
-import penjualan.koneksi.koneksi;
+import penjualan.service.barangImplement;
+import penjualan.repository.barangInterfc;
+import penjualan.config.koneksi;
 
 /**
  *

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package penjualan.implement;
+package penjualan.service;
 
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import penjualan.entity.JKategori;
-import penjualan.koneksi.koneksi;
-import penjualan.interfc.JKategoriInterfc;
+import penjualan.config.koneksi;
+import penjualan.repository.JKategoriInterfc;
 //import penjualan.view.barangview;
 
 /**
@@ -39,6 +38,7 @@ public class JKategoriImplement implements JKategoriInterfc {
     }
 
     //-- UNTUK INSERT KE DATABASE --//
+    @Override
     public JKategori insert(JKategori o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into kategori_brg values(?,?)");
         st.setString(1, o.getid_kategori());
@@ -48,6 +48,7 @@ public class JKategoriImplement implements JKategoriInterfc {
     }
 
     //-- UNTUK UPDATE DATA KE DATABASE --//
+    @Override
     public void update(JKategori o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update kategori_brg set kategori=? where id_kategori=?");
         st.setString(1, o.getid_kategori());
@@ -56,6 +57,7 @@ public class JKategoriImplement implements JKategoriInterfc {
     }
 
 //-- UNTUK MENGHAPUS DATA DARI DATABASE --//
+    @Override
     public void delete(String JKategori) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("delete from kategori_brg where id_kategori=?");
         st.setString(1, JKategori);
