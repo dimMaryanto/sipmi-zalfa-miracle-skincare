@@ -42,7 +42,7 @@ public class barangImplement implements barangInterfc {
     public List<Barang> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from barang");
-        List<Barang> list = new ArrayList<Barang>();
+        List<Barang> list = new ArrayList<>();
         while (rs.next()) {
             Barang brg = new Barang();
             brg.setKodeBarang(rs.getString("kode_barang"));
