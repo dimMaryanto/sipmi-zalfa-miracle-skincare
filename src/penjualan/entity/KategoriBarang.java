@@ -9,7 +9,7 @@ package penjualan.entity;
  *
  * @author Lani
  */
-public class JKategori {
+public class KategoriBarang {
 
     private String kodeKategori;
     private String nama;

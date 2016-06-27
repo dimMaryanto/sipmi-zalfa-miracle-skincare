@@ -82,13 +82,9 @@ public class TransaksiPembelianImplement {
                 ViewIdSp.add(RsKb.getString("kode_supplier") + "-" + (RsKb.getString("nama_supplier")));
 
             }
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
         return ViewIdSp;
 
     }

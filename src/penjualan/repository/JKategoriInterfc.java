@@ -1,6 +1,6 @@
 package penjualan.repository;
 
-import penjualan.entity.JKategori;
+import penjualan.entity.KategoriBarang;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,9 +12,9 @@ public interface JKategoriInterfc {
 
     List getAll() throws SQLException;
 
-    JKategori insert(JKategori o) throws SQLException;
+    KategoriBarang insert(KategoriBarang o) throws SQLException;
 
-    void update(JKategori o) throws SQLException;
+    void update(KategoriBarang o) throws SQLException;
 
     void delete(String id_kategori) throws SQLException;
 }

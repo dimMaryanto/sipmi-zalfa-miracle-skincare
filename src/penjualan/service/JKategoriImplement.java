@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import penjualan.entity.JKategori;
+import penjualan.entity.KategoriBarang;
 import penjualan.config.koneksi;
 import penjualan.repository.JKategoriInterfc;
 //import penjualan.view.barangview;
@@ -23,12 +23,12 @@ import penjualan.repository.JKategoriInterfc;
 public class JKategoriImplement implements JKategoriInterfc {
 
     //------untuk select atau view dataBarang dari DB ke form-------//
-    public List<JKategori> getAll() throws SQLException {
+    public List<KategoriBarang> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs1 = st.executeQuery("select * from kategori_brg");
-        List<JKategori> list = new ArrayList<>();
+        List<KategoriBarang> list = new ArrayList<>();
         while (rs1.next()) {
-            JKategori tKateg = new JKategori();
+            KategoriBarang tKateg = new KategoriBarang();
             tKateg.setid_kategori(rs1.getString("id_kategori"));
             tKateg.setkategori(rs1.getString("kategori"));
             list.add(tKateg);
@@ -39,7 +39,7 @@ public class JKategoriImplement implements JKategoriInterfc {
 
     //-- UNTUK INSERT KE DATABASE --//
     @Override
-    public JKategori insert(JKategori o) throws SQLException {
+    public KategoriBarang insert(KategoriBarang o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into kategori_brg values(?,?)");
         st.setString(1, o.getid_kategori());
         st.setString(2, o.getkategori());
@@ -49,7 +49,7 @@ public class JKategoriImplement implements JKategoriInterfc {
 
     //-- UNTUK UPDATE DATA KE DATABASE --//
     @Override
-    public void update(JKategori o) throws SQLException {
+    public void update(KategoriBarang o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update kategori_brg set kategori=? where id_kategori=?");
         st.setString(1, o.getid_kategori());
         st.setString(2, o.getkategori());

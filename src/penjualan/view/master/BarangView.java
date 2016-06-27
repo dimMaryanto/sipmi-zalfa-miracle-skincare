@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import penjualan.entity.JKategori;
+import penjualan.entity.KategoriBarang;
 import penjualan.entity.Barang;
 import penjualan.service.JKategoriImplement;
 import penjualan.service.barangImplement;
@@ -37,7 +37,7 @@ import penjualan.config.koneksi;
  */
 public class BarangView extends javax.swing.JFrame {
 
-    private List<JKategori> daftarKategori;
+    private List<KategoriBarang> daftarKategori;
     private JKategoriInterfc jkategori;
     private int row1;
     private List<Barang> daftarBarang;
@@ -93,7 +93,7 @@ public class BarangView extends javax.swing.JFrame {
 
         Object data[][] = new Object[daftarKategori.size()][2];
         int x = 0;
-        for (JKategori jKateg : daftarKategori) {
+        for (KategoriBarang jKateg : daftarKategori) {
             data[x][0] = jKateg.getid_kategori();
             data[x][1] = jKateg.getkategori();
             x++;
@@ -118,13 +118,13 @@ public class BarangView extends javax.swing.JFrame {
 
     void isiKodeKategori() {
         int akhir = daftarKategori.size() - 1;
-        JKategori kategoriAkhir = daftarKategori.get(akhir);
+        KategoriBarang kategoriAkhir = daftarKategori.get(akhir);
         int kodeAkhir = Integer.parseInt(kategoriAkhir.getid_kategori()) + 1;
         txtIdKategori.setText(kodeAkhir + "");
     }
 
     void isiTextKiri() {
-        JKategori tKateg = daftarKategori.get(row1);
+        KategoriBarang tKateg = daftarKategori.get(row1);
         txtIdKategori.setText(tKateg.getid_kategori());
         txtJKateg.setText(tKateg.getkategori());
     }
@@ -578,7 +578,7 @@ public class BarangView extends javax.swing.JFrame {
     private void hapusKategActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusKategActionPerformed
         // TODO add your handling code here:
         try {
-            JKategori kateg = new JKategori();
+            KategoriBarang kateg = new KategoriBarang();
             String kode = txtIdKategori.getText();
             jkategori.delete(kode);
             this.statusAwal();
@@ -591,7 +591,7 @@ public class BarangView extends javax.swing.JFrame {
     private void tambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah1ActionPerformed
         // TODO add your handling code here:
         try {
-            JKategori kateg = new JKategori();
+            KategoriBarang kateg = new KategoriBarang();
             kateg.setkategori(txtIdKategori.getText());
             jkategori.insert(kateg);
             this.statusAwal();
