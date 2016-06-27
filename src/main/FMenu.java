@@ -12,14 +12,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import penjualan.koneksi.koneksi;
-import penjualan.view.barangReport;
-import penjualan.view.barangView;
-import penjualan.view.laporanBeli;
-import penjualan.view.laporanJual;
+import penjualan.view.Laporan.LaporanBarang;
+import penjualan.view.BarangView;
+import penjualan.view.Laporan.laporanBeli;
+import penjualan.view.Laporan.laporanJual;
 import penjualan.view.login;
-import penjualan.view.pelangganReport;
+import penjualan.view.Laporan.LaporanPelanggan;
 import penjualan.view.pelangganView;
-import penjualan.view.supplierReport;
+import penjualan.view.Laporan.LaporanPemasok;
 import penjualan.view.supplierView;
 import penjualan.view.transaksiPembelianView;
 import penjualan.view.transaksiView;
@@ -346,9 +346,9 @@ public class FMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MITransaksiActionPerformed
 
     private void MIBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIBarangActionPerformed
-        barangView tampilBarang = null;
+        BarangView tampilBarang = null;
         try {
-            tampilBarang = new barangView();
+            tampilBarang = new BarangView();
         } catch (SQLException ex) {
             Logger.getLogger(FMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -397,7 +397,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MILBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MILBarangActionPerformed
         // TODO add your handling code here:
-        barangReport brgRep = new barangReport();
+        LaporanBarang brgRep = new LaporanBarang();
         brgRep.setLocationRelativeTo(null);
         brgRep.setVisible(true);
 
@@ -405,7 +405,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MILPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MILPelangganActionPerformed
         // TODO add your handling code here:
-        pelangganReport pelRep = new pelangganReport();
+        LaporanPelanggan pelRep = new LaporanPelanggan();
         pelRep.setLocationRelativeTo(null);
         pelRep.setVisible(true);
     }//GEN-LAST:event_MILPelangganActionPerformed
@@ -419,7 +419,7 @@ public class FMenu extends javax.swing.JFrame {
 
     private void MILPemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MILPemasokActionPerformed
         // TODO add your handling code here:
-        supplierReport suppRep = new supplierReport();
+        LaporanPemasok suppRep = new LaporanPemasok();
         suppRep.setLocationRelativeTo(null);
         suppRep.setVisible(true);
     }//GEN-LAST:event_MILPemasokActionPerformed
