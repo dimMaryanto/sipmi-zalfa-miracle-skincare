@@ -5,7 +5,7 @@
  */
 package penjualan.view.master;
 
-import penjualan.entity.Supplier;
+import penjualan.entity.Pemasok;
 import penjualan.service.supplierImplement;
 import penjualan.repository.supplierInterfc;
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class PemasokView extends javax.swing.JFrame {
 
-    List<Supplier> record = new ArrayList<Supplier>();
+    List<Pemasok> record = new ArrayList<Pemasok>();
     supplierInterfc spSuppler;
     int row;
 
@@ -61,7 +61,7 @@ public final class PemasokView extends javax.swing.JFrame {
     void isiTabel() {
         Object data[][] = new Object[record.size()][4];
         int x = 0;
-        for (Supplier sp : record) {
+        for (Pemasok sp : record) {
             data[x][0] = sp.getkode_supplier();
             data[x][1] = sp.getnama_supplier();
             data[x][2] = sp.getalamat();
@@ -85,7 +85,7 @@ public final class PemasokView extends javax.swing.JFrame {
 //--coding untuk mengisi text kedalam textfield id, nama, jk, alamat dan nope--//
 
     void isiText() {
-        Supplier sp = record.get(row);
+        Pemasok sp = record.get(row);
         tKode.setText(sp.getkode_supplier());
         tnamaSupplier.setText(sp.getnama_supplier());
         talamat.setText(sp.getalamat());
@@ -320,7 +320,7 @@ public final class PemasokView extends javax.swing.JFrame {
     private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
         // TODO add your handling code here:
         try {
-            Supplier sp = new Supplier();
+            Pemasok sp = new Pemasok();
             sp.setkode_supplier(tKode.getText());
             sp.setnama(tnamaSupplier.getText());
             sp.setalamat(talamat.getText());
@@ -336,7 +336,7 @@ public final class PemasokView extends javax.swing.JFrame {
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         // TODO add your handling code here:
         try {
-            Supplier sp = new Supplier();
+            Pemasok sp = new Pemasok();
             String kode_supplier = tKode.getText();
             spSuppler.delete(kode_supplier);
             this.statusAwal();
@@ -349,7 +349,7 @@ public final class PemasokView extends javax.swing.JFrame {
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
-            Supplier sp = new Supplier();
+            Pemasok sp = new Pemasok();
             sp.setkode_supplier(tKode.getText());
             sp.setnama(tnamaSupplier.getText());
             sp.setalamat(talamat.getText());

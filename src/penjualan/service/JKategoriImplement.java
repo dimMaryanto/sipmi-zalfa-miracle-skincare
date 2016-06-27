@@ -23,6 +23,7 @@ import penjualan.repository.JKategoriInterfc;
 public class JKategoriImplement implements JKategoriInterfc {
 
     //------untuk select atau view dataBarang dari DB ke form-------//
+    @Override
     public List<KategoriBarang> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs1 = st.executeQuery("select * from kategori_brg");

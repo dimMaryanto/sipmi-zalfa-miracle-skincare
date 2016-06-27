@@ -6,8 +6,6 @@
 package penjualan.view.master;
 
 import com.mysql.jdbc.PreparedStatement;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

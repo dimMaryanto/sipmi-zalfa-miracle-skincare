@@ -23,6 +23,7 @@ import penjualan.repository.pelangganInterfc;
 public class pelangganImplement implements pelangganInterfc {
 //---untuk select atau view datapelanggan dari DB ke form----//  
 
+    @Override
     public List<Pelanggan> getAll() throws SQLException {
         Statement st = koneksi.getConnection().createStatement();
         ResultSet rs = st.executeQuery("select * from pelanggan");
@@ -40,6 +41,7 @@ public class pelangganImplement implements pelangganInterfc {
     }
 
     //---untuk insert ke database---//
+    @Override
     public Pelanggan insert(Pelanggan o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("insert into pelanggan values (?,?,?,?,?)");
         st.setString(1, o.getid_pelanggan());
@@ -52,6 +54,7 @@ public class pelangganImplement implements pelangganInterfc {
     }
 //--untuk update ke database--//
 
+    @Override
     public void update(Pelanggan o) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("update pelanggan set"
                 + " nama=?,jp=?,alamat=?,notlp=? where id_pelanggan=?");
@@ -64,6 +67,7 @@ public class pelangganImplement implements pelangganInterfc {
     }
 //--untuk delete data berdasarkan kode_barang--//
 
+    @Override
     public void delete(String idPelanggan) throws SQLException {
         PreparedStatement st = koneksi.getConnection().prepareStatement("delete from pelanggan where id_pelanggan=?");
         st.setString(1, idPelanggan);

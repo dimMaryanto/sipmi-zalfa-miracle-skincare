@@ -22,7 +22,7 @@ public class koneksi {
         if (conn == null) {
             try {
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/si_si9_penjualan", "root", "admin");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sipmi", "root", "admin");
             } catch (SQLException ex) {
                 Logger.getLogger(koneksi.class.getName()).log(Level.SEVERE, null, ex);
             }
