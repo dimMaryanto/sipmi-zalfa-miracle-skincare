@@ -62,6 +62,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MIPembelianActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mniPemesananPembelian">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pemesanan Pembelian Barang"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniPemesananPembelianActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mniPembayaranPemesananPembelian">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pembayaran Pemesanan Pembelian Barang"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniPembayaranPemesananPembelianActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MIPenjualan">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Penjualan"/>

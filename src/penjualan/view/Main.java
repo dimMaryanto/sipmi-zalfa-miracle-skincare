@@ -5,8 +5,6 @@
  */
 package penjualan.view;
 
-import penjualan.view.LoginView;
-
 /**
  *
  * @author Lani

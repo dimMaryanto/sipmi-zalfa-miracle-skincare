@@ -21,7 +21,9 @@ import penjualan.view.Laporan.LaporanPelanggan;
 import penjualan.view.master.PelangganView;
 import penjualan.view.Laporan.LaporanPemasok;
 import penjualan.view.master.PemasokView;
+import penjualan.view.transaksi.AmbilPesananPembelianView;
 import penjualan.view.transaksi.PembelianView;
+import penjualan.view.transaksi.PemesananPembelianView;
 import penjualan.view.transaksi.PenjualanView;
 
 /**
@@ -96,6 +98,8 @@ public class FMenu extends javax.swing.JFrame {
         MIPemasok = new javax.swing.JMenuItem();
         MTransaksi = new javax.swing.JMenu();
         MIPembelian = new javax.swing.JMenuItem();
+        mniPemesananPembelian = new javax.swing.JMenuItem();
+        mniPembayaranPemesananPembelian = new javax.swing.JMenuItem();
         MIPenjualan = new javax.swing.JMenuItem();
         MLaporan = new javax.swing.JMenu();
         MILBarang = new javax.swing.JMenuItem();
@@ -250,6 +254,22 @@ public class FMenu extends javax.swing.JFrame {
             }
         });
         MTransaksi.add(MIPembelian);
+
+        mniPemesananPembelian.setText("Pemesanan Pembelian Barang");
+        mniPemesananPembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniPemesananPembelianActionPerformed(evt);
+            }
+        });
+        MTransaksi.add(mniPemesananPembelian);
+
+        mniPembayaranPemesananPembelian.setText("Pembayaran Pemesanan Pembelian Barang");
+        mniPembayaranPemesananPembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniPembayaranPemesananPembelianActionPerformed(evt);
+            }
+        });
+        MTransaksi.add(mniPembayaranPemesananPembelian);
 
         MIPenjualan.setText("Penjualan");
         MIPenjualan.addActionListener(new java.awt.event.ActionListener() {
@@ -459,44 +479,20 @@ public class FMenu extends javax.swing.JFrame {
         tampilPelanggan.setVisible(true);
     }//GEN-LAST:event_fdaftarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void mniPemesananPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPemesananPembelianActionPerformed
+        // TODO add your handling code here:
+        PemesananPembelianView tampilPembelian = new PemesananPembelianView();
+        tampilPembelian.setLocationRelativeTo(null);
+        tampilPembelian.setVisible(true);
+    }//GEN-LAST:event_mniPemesananPembelianActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new FMenu().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(FMenu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+    private void mniPembayaranPemesananPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPembayaranPemesananPembelianActionPerformed
+        // TODO add your handling code here:
+        AmbilPesananPembelianView tampilPembelian = new AmbilPesananPembelianView();
+        tampilPembelian.setLocationRelativeTo(null);
+        tampilPembelian.setVisible(true);
+    }//GEN-LAST:event_mniPembayaranPemesananPembelianActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIBarang;
@@ -522,6 +518,8 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem mniPembayaranPemesananPembelian;
+    private javax.swing.JMenuItem mniPemesananPembelian;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 

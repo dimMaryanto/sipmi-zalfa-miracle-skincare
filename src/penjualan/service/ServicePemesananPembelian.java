@@ -218,14 +218,21 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
 
     @Override
     public void delete(String id) throws SQLException {
+        Connection connect = ds.getConnection();
+        StringBuilder sqlDetail = new StringBuilder("DELETE FROM ").append(TABLE_DETAIL_PEMESANAN);
+        sqlDetail.append(" WHERE ").append(COLUMN_DETAIL_PEMESANAN_PEMBELIAN).append(" = ?");
+        PreparedStatement ps2 = connect.prepareStatement(sqlDetail.toString());
+        ps2.setString(1, id);
+        ps2.executeUpdate();
+
         StringBuilder sb = new StringBuilder("DELETE FROM ").append(TABLE_PEMESANAN);
         sb.append(" WHERE ").append(COLUMN_PEMESANAN_KODE).append(" = ?");
-        Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareStatement(sb.toString());
         ps.setString(1, id);
         ps.executeUpdate();
 
         ps.close();
+        ps2.close();
         connect.close();
     }
 
