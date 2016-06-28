@@ -232,6 +232,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtidpelanggan">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNamaPelanggan">
         </Component>
