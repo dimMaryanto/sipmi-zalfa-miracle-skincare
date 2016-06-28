@@ -21,6 +21,16 @@ public interface RepositoryPemesananPembelian extends BaseRepository<PemesananPe
     public String COLUMN_TGL = "tgl";
     public String COLUMN_PEMASOK = "kode_pemasok";
 
+    public String TABLE_PEMESANAN = "pesanan_pembelian";
+    public String TABLE_DETAIL_PEMESANAN = "t_pemesanan_pembelian_detail";
+    public String COLUMN_PEMESANAN_KODE = "kode";
+    public String COLUMN_PEMESANAN_TGL = "tgl";
+    public String COLUMN_PEMESANAN_PEMASOK = "kode_pemasok";
+    public String COLUMN_DETAIL_PEMESANAN_KODE = "kode";
+    public String COLUMN_DETAIL_PEMESANAN_PEMBELIAN = "kode_pemesanan";
+    public String COLUMN_DETAIL_PEMESANAN_BARANG = "kode_barang";
+    public String COLUMN_DETAIL_PEMESANAN_JUMLAH = "jumlah";
+
     public void save(PemesananPembelian pesan, List<PemesananPembelianDetail> listBarang) throws SQLException;
 
     public List<PemesananPembelianDetail> findByPemesananPembelianKode(String kode) throws SQLException;

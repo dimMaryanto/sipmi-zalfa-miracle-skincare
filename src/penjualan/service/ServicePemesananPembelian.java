@@ -25,7 +25,7 @@ import penjualan.repository.RepositoryPemesananPembelian;
  */
 public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
 
-    private DataSource ds;
+    private final DataSource ds;
 
     public ServicePemesananPembelian(DataSource ds) {
         this.ds = ds;
@@ -206,14 +206,27 @@ public class ServicePemesananPembelian implements RepositoryPemesananPembelian {
             brg.setKategori(k);
             bd.setBarang(brg);
             bd.setPesan(b);
-            
+
             list.add(bd);
         }
-        
+
         ps.close();
         rs.close();
         connect.close();
         return list;
+    }
+
+    @Override
+    public void delete(String id) throws SQLException {
+        StringBuilder sb = new StringBuilder("DELETE FROM ").append(TABLE_PEMESANAN);
+        sb.append(" WHERE ").append(COLUMN_PEMESANAN_KODE).append(" = ?");
+        Connection connect = ds.getConnection();
+        PreparedStatement ps = connect.prepareStatement(sb.toString());
+        ps.setString(1, id);
+        ps.executeUpdate();
+
+        ps.close();
+        connect.close();
     }
 
 }

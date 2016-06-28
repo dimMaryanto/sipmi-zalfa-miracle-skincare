@@ -11,6 +11,9 @@ import penjualan.entity.KategoriBarang;
  *
  * @author dimmaryanto
  */
-public interface RepositoryKategoriBarang extends BaseRepository<KategoriBarang, String>{
-    
+public interface RepositoryKategoriBarang extends BaseRepository<KategoriBarang, String> {
+
+    public String TABLE_NAME = "kategori_brg";
+    public String COLUMN_KODE = "id_kategori";
+    public String COLUMN_NAME = "kategori";
 }

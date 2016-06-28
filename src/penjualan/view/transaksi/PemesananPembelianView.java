@@ -65,6 +65,16 @@ public class PemesananPembelianView extends javax.swing.JFrame {
         this.tableModel = (DefaultTableModel) tableOrder.getModel();
         this.tableModel.getDataVector().removeAllElements();
         this.tableModel.fireTableDataChanged();
+
+        try {
+            Integer jumlahTransaksi;
+            jumlahTransaksi = repoBeli.findAll().size() + 1;
+            beliPemesanan.setKode("PO-" + new SimpleDateFormat("yyMMdd").format(new Date()) + "-" + String.format("%03d", jumlahTransaksi));
+            txtKodePesan.setText(beliPemesanan.getKode());
+        } catch (SQLException ex) {
+            Logger.getLogger(PemesananPembelianView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public void reloadDaftarBarangYgDipesan() {
@@ -492,8 +502,6 @@ public class PemesananPembelianView extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
-            Integer jumlahTransaksi = repoBeli.findAll().size() + 1;
-            beliPemesanan.setKode("PO-" + new SimpleDateFormat("yyMMdd").format(new Date()) +"-"+ String.format("%03d", jumlahTransaksi));
             beliPemesanan.setTgl(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(txtTanggal.getDate())));
             beliPemesanan.setPemasok(daftarPemasok.get(txtKodePemasok.getSelectedIndex()));
             this.repoBeli.save(beliPemesanan, daftarPesanBarang);

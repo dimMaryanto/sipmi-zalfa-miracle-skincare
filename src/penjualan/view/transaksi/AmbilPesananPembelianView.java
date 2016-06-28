@@ -6,6 +6,7 @@
 package penjualan.view.transaksi;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,11 +37,12 @@ public class AmbilPesananPembelianView extends javax.swing.JFrame {
     private final List<PemesananPembelian> daftarPesanan;
     private final List<PemesananPembelianDetail> daftarPesananBarang;
     private Pemasok pemasok;
+    PemesananPembelian pesan;
 
     private final RepositoryPembelian repoBeli;
     private final RepositoryPemesananPembelian repoPesan;
 
-    private DefaultTableModel modelTable;
+    private final DefaultTableModel modelTable;
 
     public AmbilPesananPembelianView() {
         setTitle("Pembayaran pesanan pembelian");
@@ -58,6 +60,14 @@ public class AmbilPesananPembelianView extends javax.swing.JFrame {
 
         txtTanggalBeli.setDate(new Date());
         loadPesanan();
+
+        try {
+            Integer noUrut = repoBeli.findAll().size() + 1;
+            pembelian.setKode("PB-" + new SimpleDateFormat("yyyyMMdd").format(new Date()) + "-" + noUrut);
+            txtKodePembelian.setText(pembelian.getKode());
+        } catch (SQLException ex) {
+            Logger.getLogger(AmbilPesananPembelianView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void loadPesanan() {
@@ -224,6 +234,11 @@ public class AmbilPesananPembelianView extends javax.swing.JFrame {
         btnSimpan.setMaximumSize(new java.awt.Dimension(120, 35));
         btnSimpan.setMinimumSize(new java.awt.Dimension(120, 35));
         btnSimpan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnSimpan);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Data transaksi pembelian"));
@@ -332,7 +347,7 @@ public class AmbilPesananPembelianView extends javax.swing.JFrame {
         daftarPesananBarang.clear();
         if (txtKodePesanan.getSelectedItem() != null) {
             try {
-                PemesananPembelian pesan = daftarPesanan.get(txtKodePesanan.getSelectedIndex());
+                pesan = daftarPesanan.get(txtKodePesanan.getSelectedIndex());
                 txtTanggalPesan.setText(StringConverter.getDateTime(pesan.getTgl().toLocalDate()));
                 txtNamaPemasok.setText(pesan.getPemasok().getNama());
                 txtAlamatPemasok.setText(pesan.getPemasok().getAlamat());
@@ -355,12 +370,33 @@ public class AmbilPesananPembelianView extends javax.swing.JFrame {
                 Logger.getLogger(AmbilPesananPembelianView.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            this.pesan = null;
             txtTanggalPesan.setText("");
             txtNamaPemasok.setText("");
             txtAlamatPemasok.setText("");
             txtTotal.setText(StringConverter.getCurrency(0));
         }
     }//GEN-LAST:event_txtKodePesananItemStateChanged
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        try {
+            pembelian.setTgl(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(txtTanggalBeli.getDate())));
+            pembelian.setPemasok(pesan.getPemasok());
+            for (PemesananPembelianDetail akanDibeli : daftarPesananBarang) {
+                PembelianDetail beli = new PembelianDetail();
+                beli.setBarang(akanDibeli.getBarang());
+                beli.setHarga(akanDibeli.getHarga());
+                beli.setJumlah(akanDibeli.getJumlah());
+                beli.setPembelian(pembelian);
+                daftarBarangBeli.add(beli);
+            }
+            repoBeli.save(pembelian, daftarBarangBeli);
+            repoPesan.delete(pesan.getKode());
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(AmbilPesananPembelianView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

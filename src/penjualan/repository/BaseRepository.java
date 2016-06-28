@@ -25,5 +25,7 @@ public interface BaseRepository<T, E> {
     public T findOne(E id) throws SQLException;
 
     public Boolean exists(E id) throws SQLException;
+    
+    public void delete(E id)throws SQLException;
 
 }
