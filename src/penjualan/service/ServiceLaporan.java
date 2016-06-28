@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import penjualan.entity.Barang;
 import penjualan.entity.KategoriBarang;
 import penjualan.entity.Pelanggan;
+import penjualan.entity.Pemasok;
 import penjualan.entity.Pembelian;
 import penjualan.entity.PembelianDetail;
 import penjualan.entity.Penjualan;
@@ -132,16 +133,43 @@ public class ServiceLaporan {
                 + "    JOIN kategori_brg kbrg ON (brg.id_kategori = kbrg.id_kategori)\n"
                 + "    JOIN supplier p ON (p.kode_supplier = b.kode_supplier)\n"
                 + "WHERE b.tgl_pembelian BETWEEN ? AND ?";
-        
+
         Connection connect = ds.getConnection();
         PreparedStatement ps = connect.prepareStatement(sql);
+        ps.setDate(1, awal);
+        ps.setDate(2, akhir);
         ResultSet rs = ps.executeQuery();
-        while (rs.next()) {            
+        while (rs.next()) {
             Pembelian b = new Pembelian();
             b.setKode(rs.getString("kode_pembelian"));
             b.setTgl(rs.getDate("tanggal_pembelian"));
+
+            Pemasok p = new Pemasok();
+            p.setKode(rs.getString("kode_pemasok"));
+            p.setNama(rs.getString("nama_pemasok"));
+            p.setAlamat(rs.getString("alamat_pemasok"));
+            p.setTlp(rs.getString("tlp_pemasok"));
+            b.setPemasok(p);
+
+            PembelianDetail bd = new PembelianDetail();
+            bd.setHarga(rs.getDouble("harga_beli"));
+            bd.setJumlah(rs.getInt("jumlah_beli"));
+
+            Barang brg = new Barang();
+            brg.setKode(rs.getString("kode_barang"));
+            brg.setNama(rs.getString("nama_barang"));
+            brg.setHarga(rs.getDouble("harga_barang"));
+            brg.setJumlah(rs.getInt("stok_barang"));
+            brg.setPaket(rs.getBoolean("paket_barang"));
+
+            KategoriBarang kbrg = new KategoriBarang();
+            kbrg.setKode(rs.getString("kode_kategori"));
+            kbrg.setNama(rs.getString("nama_kategori"));
+            brg.setKategori(kbrg);
+            bd.setBarang(brg);
+            bd.setPembelian(b);
             
-            
+            daftarBeli.add(bd);
         }
 
         ps.close();

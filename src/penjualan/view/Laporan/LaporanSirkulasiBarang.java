@@ -27,6 +27,8 @@ import penjualan.service.ServiceLaporan;
  */
 public class LaporanSirkulasiBarang extends javax.swing.JDialog {
 
+    private static final long serialVersionUID = 1L;
+
     private final ServiceLaporan serviceLaporan;
     private final RepositoryBarang repoBarang;
     private List<Barang> daftarBarang;
@@ -167,7 +169,9 @@ public class LaporanSirkulasiBarang extends javax.swing.JDialog {
             java.sql.Date tglAkhir = java.sql.Date.valueOf(dateFormat.format(txtAkhir.getDate()));
             List<PenjualanDetail> daftarPenjualan = serviceLaporan.findPenjualanDetailBetweenTanggal(
                     tglAwal, tglAkhir);
-            prosesMerge(daftarPenjualan, new ArrayList<PembelianDetail>());
+            List<PembelianDetail> daftarPembelian = serviceLaporan.findPembelianDetailBetweenTanggal(
+                    tglAwal, tglAkhir);
+            prosesMerge(daftarPenjualan, daftarPembelian);
         } catch (SQLException ex) {
             Logger.getLogger(LaporanSirkulasiBarang.class.getName()).log(Level.SEVERE, null, ex);
         }
