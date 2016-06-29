@@ -20,6 +20,7 @@ import penjualan.view.LoginView;
 import penjualan.view.Laporan.LaporanPelanggan;
 import penjualan.view.master.PelangganView;
 import penjualan.view.Laporan.LaporanPemasok;
+import penjualan.view.Laporan.LaporanSirkulasiBarang;
 import penjualan.view.master.PemasokView;
 import penjualan.view.transaksi.AmbilPesananPembelianView;
 import penjualan.view.transaksi.PembelianView;
@@ -107,6 +108,7 @@ public class FMenu extends javax.swing.JFrame {
         MILPemasok = new javax.swing.JMenuItem();
         MITransaksi = new javax.swing.JMenuItem();
         MIBeli = new javax.swing.JMenuItem();
+        mniSirkulasiBarang = new javax.swing.JMenuItem();
         MLogout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -323,6 +325,14 @@ public class FMenu extends javax.swing.JFrame {
         });
         MLaporan.add(MIBeli);
 
+        mniSirkulasiBarang.setText("Laporan Sirkulasi Barang");
+        mniSirkulasiBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSirkulasiBarangActionPerformed(evt);
+            }
+        });
+        MLaporan.add(mniSirkulasiBarang);
+
         MenuBar1.add(MLaporan);
 
         MLogout.setText("LOGOUT");
@@ -493,6 +503,12 @@ public class FMenu extends javax.swing.JFrame {
         tampilPembelian.setVisible(true);
     }//GEN-LAST:event_mniPembayaranPemesananPembelianActionPerformed
 
+    private void mniSirkulasiBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSirkulasiBarangActionPerformed
+        // TODO add your handling code here:
+        LaporanSirkulasiBarang lap = new LaporanSirkulasiBarang(this, true);
+        lap.setVisible(true);
+    }//GEN-LAST:event_mniSirkulasiBarangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIBarang;
@@ -520,10 +536,8 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem mniPembayaranPemesananPembelian;
     private javax.swing.JMenuItem mniPemesananPembelian;
+    private javax.swing.JMenuItem mniSirkulasiBarang;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
-    public void setVisibel(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

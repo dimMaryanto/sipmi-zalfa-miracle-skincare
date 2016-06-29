@@ -3,3 +3,6 @@ installer/
 dist/
 *.vpp~*
 /nbproject/private/
+
+# eclipse project
+.project
